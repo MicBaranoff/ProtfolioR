@@ -1,0 +1,60 @@
+.project-card{
+  max-width: rem(592);
+  position: relative;
+
+  $parent: &;
+
+  &:hover {
+    #{$parent} {
+      &__banner {
+        &-image {
+          scale: 1.1;
+        }
+      }
+    }
+  }
+
+  &__font {
+    &--title {
+      font-size: rem(20);
+      font-weight: 500;
+      line-height: 140%; /* 28px */
+      letter-spacing: -0.2px;
+    }
+    &--text {
+      font-size: rem(20);
+      font-weight: 400;
+      line-height: 140%; /* 28px */
+      letter-spacing: -0.2px;
+    }
+  }
+
+  &__link {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+
+  &__banner {
+    width: 100%;
+    height: rem(500);
+    border-radius: rem(32);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: rem(24);
+
+    &-image {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      max-width: 85%;
+      max-height: 85%;
+      transition: scale .3s ease;
+      transform-origin: 100% 100%;
+    }
+  }
+}

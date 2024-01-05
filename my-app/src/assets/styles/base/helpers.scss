@@ -1,0 +1,26 @@
+﻿//.mobile-hide {
+//  @include is-mobile {
+//    display: none !important;
+//  }
+//}
+//
+//.desktop-hide {
+//  @include is-desktop {
+//    display: none !important;
+//  }
+//}
+
+.pointer-none {
+  user-select: none;
+  pointer-events: none;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: rem(1216);
+  margin: 0 auto;
+}

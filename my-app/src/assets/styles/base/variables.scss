@@ -1,0 +1,44 @@
+// Paths
+// -------------------------
+$alias: '../../../..';
+$img-path: '#{$alias}/assets/images/';
+$font-path: '#{$alias}/assets/fonts/';
+
+// Typography
+// -------------------------
+$base-font-size: 16;
+$large-font-size: 21;
+$base-line-height: 1.25 !default;
+
+$sans: sans-serif !default;
+$serif: serif !default;
+
+$thin: 100 !default;
+$ultra-light: 200 !default;
+$light: 300 !default;
+$regular: 400 !default;
+$medium: 500 !default;
+$semi-bold: 600 !default;
+$bold: 700 !default;
+$ultra-bold: 800 !default;
+$black: 900 !default;
+
+$font-default: 'Montserrat';
+$font-accent: '', $sans;
+
+// Colors
+// -------------------------
+$color-primary-100: #ffffff;
+$color-primary-140: #f4f4f4;
+$color-primary-150: #dadada;
+$color-primary-200: #cccccc;
+$color-primary-210: #cbcbcb;
+$color-primary-250: #C4C4C4;
+$color-primary-900: #000000;
+
+$color-secondary-300: #ed7303;
+$color-secondary-600: #fa471f;
+
+$color-third-600: #264f36;
+
+$color-fourth-600: #00577a;

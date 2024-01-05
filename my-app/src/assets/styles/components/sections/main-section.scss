@@ -1,0 +1,46 @@
+.main-section {
+  padding-top: rem(46);
+  position: relative;
+
+  &__font {
+    &--title {
+      font-size: rem(197);
+      font-weight: 800;
+      line-height: 90%;
+      letter-spacing: rem(-10);
+    }
+
+    &--subtitle {
+      font-size: rem(24);
+      margin-bottom: rem(10);
+      font-style: normal;
+      font-weight: 600;
+      line-height: 130%;
+    }
+
+    &--text {
+      font-size: rem(20);
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: -0.2px;
+      color: $color-primary-900;
+      text-decoration: none;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: rem(56);
+  }
+
+  &__text {
+    max-width: rem(451);
+  }
+
+  &__button {
+    position: absolute;
+    bottom: rem(170);
+    right: rem(120);
+  }
+}

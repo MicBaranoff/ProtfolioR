@@ -1,0 +1,23 @@
+@use 'sass:math';
+
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal ) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+
+    src: url('#{$file-path}.ttf') format('truetype'),
+    url('#{$file-path}.ttf') format('truetype');
+  }
+}
+
+@function rem($value, $delimeter: $base-font-size) {
+  @return #{math.div($value, $delimeter)}rem
+}
+
+@function calc-between-width($width-start, $value-start, $width-end, $value-end) {
+  @return calc(#{$value-start} * 1px + (#{$value-end} - #{$value-start}) * (100vw - #{$width-start} * 1px) / (#{$width-end} - #{$width-start}))
+}
+
+

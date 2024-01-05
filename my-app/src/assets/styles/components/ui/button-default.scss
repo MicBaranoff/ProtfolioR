@@ -1,0 +1,40 @@
+.button-default {
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  padding: rem(32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(7);
+  border-radius: rem(50);
+
+  &:active {
+    opacity: 0.9;
+    scale: 0.98;
+  }
+
+  $parent: &;
+
+  &__font {
+    &--button {
+      font-size: rem(20);
+      font-weight: 600;
+      line-height: 140%;
+    }
+  }
+
+  &__ico {
+    width: rem(10);
+  }
+
+  &--simple {
+    background: $color-primary-900;
+    color: $color-primary-100;
+  }
+
+  &--light {
+    background: $color-primary-140;
+    color: $color-primary-900;
+  }
+}
