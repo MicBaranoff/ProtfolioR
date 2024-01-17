@@ -1,11 +1,23 @@
 import Button from 'components/ui/Button';
 
+import { useEffect, useRef } from 'react';
+import Splitting from 'splitting';
+
 function ContactSection({ className }) {
+  const title = useRef(null);
+
+  useEffect(() => {
+    Splitting({ target: title.current });
+  }, []);
+
   return (
-    <div className={`contact-section ${className}`}>
+    <div data-scroll data-scroll-section data-scroll-offset="20%" className={`contact-section ${className}`}>
       <div className="container contact-section__wrapper">
         <div className="contact-section__title">
-          <h2 className="contact-section__font contact-section__font--title">
+          <h2
+            ref={title}
+            className="contact-section__font contact-section__font--title"
+          >
             Let’s talk!
           </h2>
         </div>

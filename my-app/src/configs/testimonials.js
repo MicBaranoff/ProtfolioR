@@ -1,5 +1,6 @@
 export default [
   {
+    id: 0,
     text: '1 “Joey is a remarkable artist. He grasps abstract ideas and transforms them\n'
             + 'into exceptional visuals. Throughout the years, I`ve witnessed him produce\n'
             + 'everything from small symbols to comprehensive adaptive web pages.\n'
@@ -9,6 +10,7 @@ export default [
     pos: 'Product Lead,Gatha.',
   },
   {
+    id: 1,
     text: ' 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
             + 'Culpa debitis dicta earum'
             + 'libero maiores minus mollitia officia, perferendis ratione'

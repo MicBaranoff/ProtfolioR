@@ -1,0 +1,31 @@
+@mixin is-ready {
+  .is-ready & {
+    @content;
+  }
+}
+
+@mixin is-mobile {
+  @media screen and (max-width: 550px) {
+    @content;
+  }
+}
+
+@mixin run-splitting-on-ready {
+  .splitting .char {
+    @include is-ready {
+      animation-play-state: running;
+    }
+  }
+
+  .splitting .word {
+    @include is-ready {
+      animation-play-state: running;
+    }
+  }
+}
+
+@mixin is-in-view {
+  .is-inview {
+    @content;
+  }
+}

@@ -3,9 +3,13 @@
   overflow: hidden;
   white-space: nowrap;
   box-sizing: border-box;
-  color: $color-primary-100;
-  background: $color-primary-900;
+  color: $color-primary-900;
+  background: $color-primary-100;
   padding: rem(48) 0;
+
+  @include is-mobile {
+    padding: rem(21) 0;
+  }
 
   &__font {
     &--text {
@@ -13,6 +17,10 @@
       font-weight: 800;
       line-height: 110%;
       letter-spacing: -2.8px;
+
+      @include is-mobile {
+        font-size: rem(48);
+      }
     }
   }
 
@@ -20,6 +28,10 @@
     display: inline-block;
     animation: marquee 15s linear infinite;
     padding: 0 rem(40);
+
+    @include is-mobile {
+      padding: 0 rem(10);
+    }
   }
 }
 

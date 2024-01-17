@@ -23,4 +23,8 @@
   width: 100%;
   max-width: rem(1216);
   margin: 0 auto;
+
+  @include is-mobile {
+    padding: 0 rem(16);
+  }
 }

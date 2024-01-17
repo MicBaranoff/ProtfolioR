@@ -1,28 +1,50 @@
 import Button from 'components/ui/Button';
 
-function MainSection() {
+import { useEffect, useRef } from 'react';
+
+import Splitting from 'splitting';
+
+function MainSection({ className = '' }) {
+  const title = useRef(null);
+  const desc = useRef(null);
+  const email = useRef(null);
+  const lets = useRef(null);
+
+  useEffect(() => {
+    Splitting({ target: title.current });
+    Splitting({ target: email.current });
+    Splitting({ target: desc.current, by: 'lines' });
+    Splitting({ target: lets.current, by: 'lines' });
+  }, []);
+
   return (
-    <div className="main-section">
+    <div
+      data-scroll
+      data-scroll-section
+      className={`main-section ${className}`}
+    >
       <div className="container">
         <div className="main-section__title">
-          <h1 className="main-section__font main-section__font--title">
-            Websites&
+          <h1 ref={title} className="main-section__font main-section__font--title">
+            Front-end
             <br />
-            Branding
+            Developer
           </h1>
-          <Button
-            className="main-section__button"
-            text="SCROLL DOWN"
-            icon="arrow-down"
-            type="light"
-          />
+          <div className="main-section__button">
+            <Button
+              className=""
+              text="SCROLL DOWN"
+              icon="arrow-down"
+            />
+          </div>
         </div>
         <div className="main-section__footer">
           <div className="main-section__talk">
-            <p className="main-section__font main-section__font--subtitle">
+            <p ref={lets} className="main-section__font main-section__font--subtitle">
               Let’s Talk
             </p>
             <a
+              ref={email}
               className="main-section__font main-section__font--text"
               href="mailto:senior.mishel@gmail.com"
             >
@@ -30,8 +52,8 @@ function MainSection() {
             </a>
           </div>
           <div className="main-section__text">
-            <p className="main-section__font main-section__font--text">
-              Hello, I’m Joey, an online product designer focusing on brand identity,
+            <p ref={desc} className="main-section__font main-section__font--text">
+              Hello, I’m Michael, an online product designer focusing on brand identity,
               advertising, and no-code instruments.
             </p>
           </div>

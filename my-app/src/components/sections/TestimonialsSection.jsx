@@ -42,7 +42,7 @@ function TestimonialsSection({ className }) {
           <div className="swiper-wrapper">
 
             {testimonials.map((item) => (
-              <div className="swiper-slide">
+              <div key={item.id} className="swiper-slide">
                 <div className="testimonials-section__slide ">
                   <div className="testimonials-section__slide-main">
                     <p className="testimonials-section__font testimonials-section__font--main">

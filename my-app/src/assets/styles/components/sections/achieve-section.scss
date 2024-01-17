@@ -1,0 +1,29 @@
+.achieves-section {
+  position: relative;
+
+  $parent: &;
+
+  &:hover {
+    #{$parent} {
+      &__bg {
+        scale: 1;
+      }
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    width: rem(150);
+    height: rem(150);
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    background:transparent;
+    scale: 0;
+    transition: scale .3s ease;
+    backdrop-filter: invert(100%);
+    pointer-events: none;
+  }
+}

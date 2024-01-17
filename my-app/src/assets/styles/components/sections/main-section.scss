@@ -8,14 +8,23 @@
       font-weight: 800;
       line-height: 90%;
       letter-spacing: rem(-10);
+
+      @include is-mobile {
+        font-size: rem(48);
+        letter-spacing: rem(-2);
+      }
     }
 
     &--subtitle {
       font-size: rem(24);
-      margin-bottom: rem(10);
+      margin-bottom: rem(5);
       font-style: normal;
       font-weight: 600;
       line-height: 130%;
+
+      @include is-mobile {
+        font-size: rem(20);
+      }
     }
 
     &--text {
@@ -23,8 +32,11 @@
       font-weight: 500;
       line-height: 140%;
       letter-spacing: -0.2px;
-      color: $color-primary-900;
       text-decoration: none;
+
+      @include is-mobile {
+        font-size: rem(14);
+      }
     }
   }
 
@@ -32,15 +44,33 @@
     display: flex;
     justify-content: space-between;
     margin-top: rem(56);
+
+    @include is-mobile {
+      flex-direction: column-reverse;
+      margin: 0;
+    }
   }
 
   &__text {
     max-width: rem(451);
+
+    @include is-mobile {
+      margin-bottom: rem(10);
+    }
   }
 
   &__button {
     position: absolute;
     bottom: rem(170);
     right: rem(120);
+
+    @include is-mobile {
+      position: static;
+      margin-left: auto;
+      margin-top: rem(16);
+      margin-bottom: rem(20);
+    }
   }
+
+  //@include run-splitting-on-ready;
 }

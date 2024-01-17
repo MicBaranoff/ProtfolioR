@@ -1,5 +1,7 @@
 .goals-section {
 
+  position: relative;
+
   &__font {
     &--title {
       font-size: rem(48);
@@ -7,6 +9,10 @@
       line-height: 120%;
       letter-spacing: -0.48px;
       margin-bottom: rem(10);
+
+      @include is-mobile {
+        font-size: rem(24);
+      }
     }
 
     &--subtitle {
@@ -14,6 +20,10 @@
       font-weight: 600;
       line-height: 130%; /* 41.6px */
       letter-spacing: -0.32px;
+
+      @include is-mobile {
+        font-size: rem(20);
+      }
     }
 
     &--text {
@@ -21,11 +31,34 @@
       font-weight: 500;
       line-height: 140%; /* 28px */
       letter-spacing: -0.2px;
+
+      @include is-mobile {
+        font-size: rem(14);
+      }
+    }
+  }
+
+  &__bg {
+    background: $color-primary-100;
+    width: rem(4);
+    height: rem(4);
+    border-radius: 50%;
+    position: absolute;
+    top: rem(19);
+    left: rem(-8);
+
+    @include is-mobile {
+      top: rem(11);
+      left: 0;
     }
   }
 
   &__title {
     margin-bottom: rem(45);
+
+    @include is-mobile {
+      margin-bottom: rem(14);
+    }
   }
 
   &__grid {
@@ -33,26 +66,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: rem(84);
-  }
 
-  &__item {
-    width: rem(442);
-  }
-
-  &__item-title {
-    margin-bottom: rem(24);
-    position: relative;
-
-    &:before {
-      content: '';
-      display: block;
-      background: $color-primary-900;
-      width: rem(4);
-      height: rem(4);
-      border-radius: 50%;
-      position: absolute;
-      top: rem(19);
-      left: rem(-8);
+    @include is-mobile {
+      gap: rem(32);
     }
   }
 }

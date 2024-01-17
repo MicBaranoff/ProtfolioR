@@ -7,6 +7,10 @@
       font-weight: 600;
       line-height: 110%;
       letter-spacing: -0.64px;
+
+      @include is-mobile {
+        font-size: rem(24);
+      }
     }
 
     &--subtitle {
@@ -14,6 +18,10 @@
       font-weight: 600;
       line-height: 140%;
       letter-spacing: -0.2px;
+
+      @include is-mobile {
+        font-size: rem(14);
+      }
     }
 
     &--main {
@@ -21,6 +29,10 @@
       font-weight: 500;
       line-height: 105%;
       letter-spacing: -0.78px;
+
+      @include is-mobile {
+        font-size: rem(14);
+      }
     }
 
     &--who {
@@ -28,6 +40,10 @@
       font-weight: 500;
       line-height: 140%;
       letter-spacing: -0.2px;
+
+      @include is-mobile {
+        font-size: rem(14);
+      }
     }
   }
 
@@ -40,6 +56,11 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: rem(50);
+
+    @include is-mobile {
+      flex-direction: column;
+      gap: rem(13);
+    }
   }
 
   &__slide-main {

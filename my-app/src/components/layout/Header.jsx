@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 function Header() {
   return (
-    <header className="header">
+    <header data-scroll-section className="header">
       <NavLink className="header__logo" to="/">
         <span>mb.dev</span>
       </NavLink>

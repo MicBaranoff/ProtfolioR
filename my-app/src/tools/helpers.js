@@ -1,4 +1,4 @@
-export default function generateRandomGradient() {
+export function generateRandomGradient() {
   const hueStart = Math.floor(Math.random() * 360);
   // eslint-disable-next-line max-len
   const hueEnd = (hueStart + Math.floor(Math.random() * 100)) % 360;
@@ -9,4 +9,10 @@ export default function generateRandomGradient() {
   const gradient = `linear-gradient(to right, hsl(${hueStart}, ${saturation}, ${lightness}), hsl(${hueEnd}, ${saturation}, ${lightness}))`;
 
   return gradient;
+}
+
+export function getRandomInt(min, max) {
+  const minVal = Math.ceil(min);
+  const maxVal = Math.floor(max);
+  return Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
 }

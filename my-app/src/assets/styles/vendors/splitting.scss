@@ -1,0 +1,40 @@
+.splitting .word {
+  display: inline-block;
+}
+
+.splitting .char {
+  display: inline-block;
+  animation: slide-in .55s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation-delay: calc(.42s + (60ms * var(--char-index)));
+  animation-play-state: paused;
+}
+
+.splitting .word {
+  display: inline-block;
+  animation: slide-in .95s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation-delay: calc(.5s + (120ms * var(--word-index)));
+  animation-play-state: paused;
+}
+
+// watching locomotive in-view block status
+@include is-in-view{
+  .splitting .char {
+    animation-play-state: running;
+  }
+
+  .splitting .word {
+    animation-play-state: running;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(40%);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}

@@ -8,10 +8,25 @@
   justify-content: center;
   gap: rem(7);
   border-radius: rem(50);
+  position: relative;
+  transition: background .3s ease;
+  overflow: hidden;
+
+  $parent: &;
+
+  &:hover {
+    #{$parent} {
+      &__bg {
+        scale: 1;
+      }
+    }
+  }
 
   &:active {
-    opacity: 0.9;
-    scale: 0.98;
+    #{$parent} {
+      &__bg {
+      }
+    }
   }
 
   $parent: &;
@@ -28,13 +43,44 @@
     width: rem(10);
   }
 
-  &--simple {
-    background: $color-primary-900;
-    color: $color-primary-100;
+  $parent: &;
+
+  &__bg {
+    display: block;
+    position: absolute;
+    width: rem(100);
+    height: rem(100);
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    scale: 0;
+    transition: scale .3s ease;
+    backdrop-filter: invert(100%);
+    pointer-events: none;
   }
 
-  &--light {
-    background: $color-primary-140;
+  &--simple {
+    background: $color-primary-210;
     color: $color-primary-900;
+
+    &:hover {
+      background: $color-primary-900;
+      color: $color-primary-100;
+    }
+
+    @include is-mobile {
+      padding: rem(8);
+    }
+
+    #{$parent} {
+      &__font {
+        &--button {
+          font-size: rem(14);
+          font-weight: 500;
+        }
+      }
+    }
   }
 }

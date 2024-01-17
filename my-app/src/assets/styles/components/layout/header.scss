@@ -4,10 +4,18 @@
   flex-direction: column;
   justify-content: center;
 
+  @include is-mobile {
+    padding-top: rem(12);
+  }
+
   &__font {
     &--link {
       font-size: rem(20);
       line-height: 100%;
+
+      @include is-mobile {
+        font-size: rem(14);
+      }
     }
   }
 
@@ -21,10 +29,15 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    background: $color-primary-900;
+    background: $color-primary-250;
     gap: rem(15);
     border-radius: rem(80);
-    padding: rem(5);
+    padding: rem(2);
+
+    @include is-mobile {
+      gap: rem(5);
+      padding: rem(3);
+    }
   }
 
   &__nav-link {
@@ -32,11 +45,15 @@
     text-decoration: none;
     padding: rem(9) rem(16);
     border-radius: rem(48);
-    color: $color-primary-250;
+    color: $color-primary-900;
+
+    @include is-mobile {
+      padding: rem(7) rem(10);
+    }
 
     &.active {
-      background: $color-primary-100;
-      color: $color-primary-900;
+      background: $color-primary-900;
+      color: $color-primary-100;
     }
   }
 
@@ -45,7 +62,11 @@
     font-size: rem(40);
     font-weight: 600;
     text-decoration: none;
-    color: $color-primary-900;
     margin: 0 auto rem(30);
+
+    @include is-mobile {
+      margin: 0 auto rem(10);
+      font-size: rem(20);
+    }
   }
 }

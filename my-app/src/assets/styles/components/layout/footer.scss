@@ -2,13 +2,17 @@
   padding-top: rem(150);
   padding-bottom: rem(48);
 
+  @include is-mobile {
+    padding-top: rem(24);
+    padding-bottom: rem(28);
+  }
+
   &__font {
     &--text {
       font-size: rem(14);
       font-style: normal;
       font-weight: 400;
       letter-spacing: -0.14px;
-      color: $color-primary-900;
       text-decoration: none;
     }
   }
@@ -17,6 +21,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include is-mobile {
+     flex-direction: column;
+      gap: rem(24);
+    }
   }
 
   &__links {

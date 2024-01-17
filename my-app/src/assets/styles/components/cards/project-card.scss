@@ -21,6 +21,7 @@
       line-height: 140%; /* 28px */
       letter-spacing: -0.2px;
     }
+
     &--text {
       font-size: rem(20);
       font-weight: 400;
@@ -46,6 +47,12 @@
     overflow: hidden;
     position: relative;
     margin-bottom: rem(24);
+
+    @include is-mobile {
+      height: rem(290);
+      border-radius: rem(19);
+      margin-bottom: rem(14);
+    }
 
     &-image {
       position: absolute;
