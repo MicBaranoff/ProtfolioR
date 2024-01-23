@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 
   @include is-mobile {
     padding-top: rem(12);
@@ -10,6 +15,7 @@
 
   &__font {
     &--link {
+      pointer-events: none;
       font-size: rem(20);
       line-height: 100%;
 
@@ -22,6 +28,7 @@
   &__row {
     display: flex;
     justify-content: center;
+    position: relative;
   }
 
   &__nav {
@@ -29,10 +36,12 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    background: $color-primary-250;
+    background: $color-primary-100;
     gap: rem(15);
     border-radius: rem(80);
     padding: rem(2);
+    overflow: hidden;
+    position: relative;
 
     @include is-mobile {
       gap: rem(5);
@@ -46,15 +55,29 @@
     padding: rem(9) rem(16);
     border-radius: rem(48);
     color: $color-primary-900;
+    transition: color .3s ease, background .3s ease;
 
     @include is-mobile {
       padding: rem(7) rem(10);
     }
 
     &.active {
-      background: $color-primary-900;
-      color: $color-primary-100;
+      //background: $color-primary-900;
+      //color: $color-primary-100;
     }
+  }
+
+  &__highlighter {
+    position: absolute;
+    left: 0;
+    top: rem(2);
+    bottom: rem(2);
+    background: transparent;
+    border-radius: rem(50);
+    z-index: 2;
+    transition: width .5s linear, left .7s $transition-bounce;
+    backdrop-filter: invert(100%);
+    pointer-events: none;
   }
 
   &__logo {

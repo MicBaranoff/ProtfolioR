@@ -20,19 +20,30 @@ function ProjectCard({
 
   const { scroll } = useLocomotiveScroll();
 
+  const MAX_TRANSFORM_VALUE = 50;
+
   scroll?.on('scroll', (args) => {
-    setScrollProgress(args?.currentElements?.[id]?.progress);
-    // console.log(args.currentElements[id]);
+    if (!args) return;
+
+    const currentElement = args?.currentElements?.[id];
+    const value = Math.ceil((currentElement?.progress || 0) * 100);
+    const { direction } = args;
+
+    if (value <= MAX_TRANSFORM_VALUE) setScrollProgress(value);
+
+    if (!currentElement && direction === 'up') setScrollProgress(MAX_TRANSFORM_VALUE);
   });
 
   return (
     <div
       data-scroll
       data-scroll-id={id}
-      data-scroll-offset="-100%"
       className={`project-card ${className}`}
     >
-      {scrollProgress}
+      <div className="project-card__cover">
+        <div style={{ width: `${50 - scrollProgress}%` }} className="project-card__cover-left" />
+        <div style={{ width: `${50 - scrollProgress}%` }} className="project-card__cover-right" />
+      </div>
       <NavLink to={link} className="project-card__link" />
       <div style={{ background: randomBackground }} className="project-card__banner">
         <img

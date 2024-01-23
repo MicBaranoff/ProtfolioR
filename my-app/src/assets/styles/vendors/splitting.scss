@@ -4,14 +4,14 @@
 
 .splitting .char {
   display: inline-block;
-  animation: slide-in .55s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation: slide-in .55s $transition-bounce both;
   animation-delay: calc(.42s + (60ms * var(--char-index)));
   animation-play-state: paused;
 }
 
 .splitting .word {
   display: inline-block;
-  animation: slide-in .95s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation: slide-in .95s $transition-bounce both;
   animation-delay: calc(.5s + (120ms * var(--word-index)));
   animation-play-state: paused;
 }

@@ -1,45 +1,34 @@
-import Header from 'components/layout/Header';
-import Footer from 'components/layout/Footer';
-
-import { useRef } from 'react';
-
 import { motion } from 'framer-motion';
+import { useLocomotiveScroll } from 'react-locomotive-scroll';
 
-import { LocomotiveScrollProvider } from 'react-locomotive-scroll';
-
-function DefaultLayer({ children, className }) {
-  const containerRef = useRef(null);
+function DefaultLayer({ children, className = '' }) {
+  const { scroll } = useLocomotiveScroll();
+  const enableScroll = () => {
+    scroll.start();
+  };
+  const disableScroll = () => {
+    scroll.stop();
+  };
 
   return (
-    <LocomotiveScrollProvider
-      options={{
-        smooth: true,
-        offset: '20%',
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{
+        opacity: 1,
+        transition: {
+          duration: 1,
+        },
       }}
-      watch={[]}
-      containerRef={containerRef}
+      onAnimationStart={disableScroll}
+      onAnimationComplete={enableScroll}
+      exit={{ opacity: 0 }}
+      viewport={{ once: true }}
+      className={`default-layout ${className}`}
     >
-      <div
-        data-scroll-container
-        className={`default-layout ${className}`}
-        ref={containerRef}
-      >
-        <Header />
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            ease: 'linear',
-            duration: 0.5,
-          }}
-        >
-          {children}
-        </motion.div>
-        <Footer />
+      <div className="default-layout__wrapper">
+        {children}
       </div>
-    </LocomotiveScrollProvider>
-
+    </motion.div>
   );
 }
 

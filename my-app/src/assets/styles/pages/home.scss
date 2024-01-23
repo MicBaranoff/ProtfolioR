@@ -1,5 +1,11 @@
 .home-page {
 
+  padding-top: rem(180);
+
+  @include is-mobile {
+    padding-top: rem(120);
+  }
+
   &__main {
     margin-bottom: rem(140);
 

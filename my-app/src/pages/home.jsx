@@ -5,17 +5,10 @@ import GoalsSection from 'components/sections/GoalsSection';
 import Marquee from 'components/blocks/Marquee';
 import ContactSection from 'components/sections/ContactSection';
 import AchievesSection from 'components/sections/AchievesSection';
-import { useEffect, useState } from 'react';
 
 function Home() {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    setReady(true);
-  });
-
   return (
-    <DefaultLayer className={`${(ready && 'is-ready') || ''}`}>
+    <DefaultLayer>
       <div className="home-page ">
         <MainSection className="home-page__main" />
         <SomeProjectsSection className="home-page__projects" />

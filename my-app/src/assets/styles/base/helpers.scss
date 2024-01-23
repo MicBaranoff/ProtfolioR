@@ -28,3 +28,12 @@
     padding: 0 rem(16);
   }
 }
+
+.stop-scrolling {
+  position : fixed !important;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden !important;
+}
