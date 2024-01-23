@@ -7,7 +7,7 @@ import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 function Button({
-  className, icon, text, type = buttonTypes.simple,
+  className, icon, text, type = buttonTypes.simple, onClick = () => {},
 }) {
   const button = useRef();
   const circle = useRef();
@@ -27,15 +27,16 @@ function Button({
 
   return (
     <motion.button
+      ref={button}
+      type="button"
+      className={`${type && `button-default--${type}`} button-default ${className}`}
       initial={{ scale: 0 }}
       whileInView={{
         scale: 1,
         transition: { delay: 0.6 },
       }}
       onMouseMove={handleMouseMove}
-      ref={button}
-      type="button"
-      className={`${type && `button-default--${type}`} button-default ${className}`}
+      onClick={onClick}
     >
       <span
         className="button-default__bg"

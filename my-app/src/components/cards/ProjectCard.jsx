@@ -26,7 +26,7 @@ function ProjectCard({
     if (!args) return;
 
     const currentElement = args?.currentElements?.[id];
-    const value = Math.ceil((currentElement?.progress || 0) * 100);
+    const value = Math.ceil((currentElement?.progress || 0) * 100 * 1.2);
     const { direction } = args;
 
     if (value <= MAX_TRANSFORM_VALUE) setScrollProgress(value);

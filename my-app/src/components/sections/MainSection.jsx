@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 
 import Splitting from 'splitting';
 
-function MainSection({ className = '' }) {
+function MainSection({ className = '', clickHandler = () => {} }) {
   const title = useRef(null);
   const desc = useRef(null);
   const email = useRef(null);
@@ -25,21 +25,40 @@ function MainSection({ className = '' }) {
     >
       <div className="container">
         <div className="main-section__title">
-          <h1 ref={title} className="main-section__font main-section__font--title">
+          <h1
+            ref={title}
+            className="main-section__font main-section__font--title"
+            data-scroll
+            data-scroll-speed="1"
+            data-scroll-delay="0.05"
+            data-scroll-offset="10%"
+          >
             Front-end
             <br />
             Developer
           </h1>
-          <div className="main-section__button">
+          <div
+            data-scroll
+            data-scroll-speed="2"
+            data-scroll-delay="0.05"
+            data-scroll-offset="10%"
+            className="main-section__button"
+          >
             <Button
-              className=""
               text="SCROLL DOWN"
               icon="arrow-down"
+              onClick={clickHandler}
             />
           </div>
         </div>
         <div className="main-section__footer">
-          <div className="main-section__talk">
+          <div
+            data-scroll
+            data-scroll-speed="2"
+            data-scroll-delay="0.05"
+            data-scroll-offset="10%"
+            className="main-section__talk"
+          >
             <p ref={lets} className="main-section__font main-section__font--subtitle">
               Let’s Talk
             </p>
@@ -51,7 +70,13 @@ function MainSection({ className = '' }) {
               senior.mishel@gmail.com
             </a>
           </div>
-          <div className="main-section__text">
+          <div
+            data-scroll
+            data-scroll-speed="1.2"
+            data-scroll-delay="0.05"
+            data-scroll-offset="10%"
+            className="main-section__text"
+          >
             <p ref={desc} className="main-section__font main-section__font--text">
               Hello, I’m Michael, an online product designer focusing on brand identity,
               advertising, and no-code instruments.

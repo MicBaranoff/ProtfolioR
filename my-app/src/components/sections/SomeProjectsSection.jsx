@@ -9,7 +9,7 @@ import ProjectCard from 'components/cards/ProjectCard';
 
 import projects from 'configs/projects';
 
-function SomeProjectsSection({ className }) {
+function SomeProjectsSection({ className, innerRef }) {
   const title = useRef(null);
   const desc = useRef(null);
 
@@ -20,6 +20,7 @@ function SomeProjectsSection({ className }) {
 
   return (
     <div
+      ref={innerRef}
       data-scroll
       data-scroll-section
       data-scroll-offset="20%"
