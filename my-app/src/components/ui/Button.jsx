@@ -35,6 +35,7 @@ function Button({
         scale: 1,
         transition: { delay: 0.6 },
       }}
+      viewport={{ once: true }}
       onMouseMove={handleMouseMove}
       onClick={onClick}
     >

@@ -6,15 +6,27 @@ import projects from 'configs/projects';
 
 import { useEffect, useRef } from 'react';
 import Splitting from 'splitting';
+import { useLocomotiveScroll } from 'react-locomotive-scroll';
 
 function Projects() {
   const title = useRef(null);
   const desc = useRef(null);
+  const projectsSection = useRef();
+  const { scroll } = useLocomotiveScroll();
 
   useEffect(() => {
     Splitting({ target: title.current });
     Splitting({ target: desc.current, by: 'lines' });
   }, []);
+
+  const scrollTo = (section) => {
+    if (!section.current) return;
+
+    scroll.scrollTo(section.current, {
+      offset: -100,
+      duration: 2 * 1000,
+    });
+  };
 
   return (
     <DefaultLayer>
@@ -44,13 +56,14 @@ function Projects() {
                   className=""
                   text="SCROLL DOWN"
                   icon="arrow-down"
+                  onClick={() => scrollTo(projectsSection)}
                 />
               </div>
             </div>
 
           </div>
 
-          <div className="projects-page__grid">
+          <div ref={projectsSection} className="projects-page__grid">
             {
                     projects.map((project) => (
                       <ProjectCard
