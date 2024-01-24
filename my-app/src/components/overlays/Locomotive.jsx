@@ -12,7 +12,7 @@ function Locomotive({ children }) {
         smooth: true,
         getDirection: true,
       }}
-      onUpdate={(scroll) => {
+      onLocationChange={(scroll) => {
         scroll.scrollTo(0, { duration: 0, disableLerp: true });
       }}
       location={pathname}

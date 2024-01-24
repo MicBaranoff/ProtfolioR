@@ -29,10 +29,24 @@ function SomeProjectsSection({ className, innerRef }) {
       <div className="container">
         <div className="some-projects-section__head">
           <div className="some-projects-section__head-text">
-            <h3 ref={title} className="some-projects-section__font some-projects-section__font--title">
+            <h3
+              ref={title}
+              className="some-projects-section__font some-projects-section__font--title"
+              data-scroll
+              data-scroll-speed="2"
+              data-scroll-delay="0.05"
+              data-scroll-offset="10%"
+            >
               Projects
             </h3>
-            <p ref={desc} className="some-projects-section__font some-projects-section__font--text">
+            <p
+              ref={desc}
+              className="some-projects-section__font some-projects-section__font--text"
+              data-scroll
+              data-scroll-speed="1.4"
+              data-scroll-delay="0.05"
+              data-scroll-offset="10%"
+            >
               As a seasoned creator of contemporary,
               user-friendly web designs and digital solutions,
               I aim to assist you in constructing the brand of your fantasies.

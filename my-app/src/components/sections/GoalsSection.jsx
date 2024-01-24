@@ -60,7 +60,16 @@ function GoalsSection({ className }) {
     >
       <div className="container">
         <div data-scroll className="goals-section__title">
-          <h2 ref={title} className="goals-section__font goals-section__font--title">Expertise</h2>
+          <h2
+            ref={title}
+            className="goals-section__font goals-section__font--title"
+            data-scroll
+            data-scroll-speed="1.5"
+            data-scroll-delay="0.05"
+            data-scroll-offset="10%"
+          >
+            Expertise
+          </h2>
         </div>
         <div className="goals-section__grid">
           {

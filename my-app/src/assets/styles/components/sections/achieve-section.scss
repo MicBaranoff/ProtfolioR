@@ -25,5 +25,9 @@
     transition: scale .3s ease;
     backdrop-filter: invert(100%);
     pointer-events: none;
+
+    @include is-mobile {
+      display: none;
+    }
   }
 }

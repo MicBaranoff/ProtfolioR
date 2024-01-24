@@ -17,6 +17,13 @@
         top: 0;
         width: rem(100);
         height: rem(100);
+
+        @include is-tablet {
+          width: rem(8);
+          height: rem(8);
+          top: rem(10);
+          left: rem(-5);
+        }
       }
     }
   }
@@ -62,8 +69,8 @@
     scale: 0;
 
     @include is-mobile {
-      top: rem(11);
-      left: 0;
+      top: rem(10);
+      left: rem(-5);
     }
   }
 

@@ -10,6 +10,13 @@
     &:after,  &:before{
       width: 100%;
     }
+
+    @include is-mobile {
+      #{$parent}__img {
+        opacity: 1;
+        scale: 1;
+      }
+    }
   }
 
   &:after{
@@ -58,7 +65,7 @@
       letter-spacing: rem(-3);
 
       @include is-mobile {
-        font-size: rem(48);
+        font-size: rem(44);
         letter-spacing: rem(-2);
       }
     }
@@ -69,6 +76,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include is-mobile {
+      z-index: 3;
+    }
   }
 
   &__img {
@@ -83,5 +94,14 @@
     transition: opacity .3s ease, scale .3s ease;
     z-index:4;
     pointer-events: none;
+
+    @include is-mobile {
+      opacity: 0;
+      scale: 0;
+      width: rem(100);
+      right: rem(10);
+      z-index: 2;
+      transition-delay: .4s;
+    }
   }
 }

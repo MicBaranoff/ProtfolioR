@@ -17,6 +17,10 @@ function ContactSection({ className }) {
           <h2
             ref={title}
             className="contact-section__font contact-section__font--title"
+            data-scroll
+            data-scroll-speed="2"
+            data-scroll-delay="0.05"
+            data-scroll-offset="10%"
           >
             Let’s talk!
           </h2>

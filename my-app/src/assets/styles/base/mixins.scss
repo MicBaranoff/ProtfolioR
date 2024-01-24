@@ -10,6 +10,12 @@
   }
 }
 
+@mixin is-tablet {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
 @mixin run-splitting-on-ready {
   .splitting .char {
     @include is-ready {

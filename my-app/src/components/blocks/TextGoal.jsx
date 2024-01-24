@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Splitting from 'splitting';
 
+import { isMobileOrTablet } from 'tools/helpers';
+
 function TextGoal({ data }) {
   const title = useRef(null);
   const text = useRef(null);
@@ -19,6 +21,8 @@ function TextGoal({ data }) {
   });
 
   function handleMouseMove(e) {
+    if (isMobileOrTablet()) return;
+
     const current = section.current.getBoundingClientRect();
     const movedBlock = circle.current.getBoundingClientRect();
     const left = e.clientX - current.left - (movedBlock.width / 2);
