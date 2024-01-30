@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 
 import debounce from 'lodash.debounce';
 
+const { REACT_APP_BASE_PATH } = process.env;
 function Header() {
   const highlight = useRef();
   const header = useRef();
@@ -14,8 +15,11 @@ function Header() {
   const setHighLightPosition = () => {
     const linkElement = document.querySelector(`[data-path="${location.pathname}"]`);
 
-    const linkRect = linkElement.getBoundingClientRect();
-    // console.log(highlight.current.parentElement.getBoundingClientRect().left, linkRect.left);
+    const linkRect = linkElement?.getBoundingClientRect();
+
+    console.log(location.pathname);
+
+    if (!linkRect) return;
 
     const offsetX = linkRect.left - highlight.current.parentElement.getBoundingClientRect().left;
     const { width } = linkRect;
@@ -37,7 +41,7 @@ function Header() {
       data-scroll-section
       className="header"
     >
-      <NavLink className="header__logo" to="/">
+      <NavLink className="header__logo" to={`${REACT_APP_BASE_PATH}`}>
         <span>mb.dev</span>
       </NavLink>
       <div ref={header} className="header__row">
@@ -50,8 +54,8 @@ function Header() {
           <li className="header__nav-item">
             <NavLink
               className="header__nav-link"
-              to="/"
-              data-path="/"
+              to={`${REACT_APP_BASE_PATH}`}
+              data-path={`${REACT_APP_BASE_PATH}`}
             >
               <span className="header__font header__font--link">Home</span>
             </NavLink>
@@ -59,8 +63,8 @@ function Header() {
           <li className="header__nav-item">
             <NavLink
               className="header__nav-link"
-              to="/projects"
-              data-path="/projects"
+              to={`${REACT_APP_BASE_PATH}projects`}
+              data-path={`${REACT_APP_BASE_PATH}projects`}
             >
               <span className="header__font header__font--link">Projects</span>
             </NavLink>
@@ -68,8 +72,8 @@ function Header() {
           <li className="header__nav-item">
             <NavLink
               className="header__nav-link"
-              to="/about"
-              data-path="/about"
+              to={`${REACT_APP_BASE_PATH}about`}
+              data-path={`${REACT_APP_BASE_PATH}about`}
             >
               <span className="header__font header__font--link">About</span>
             </NavLink>
@@ -77,8 +81,8 @@ function Header() {
           <li className="header__nav-item">
             <NavLink
               className="header__nav-link"
-              to="/contact"
-              data-path="/contact"
+              to={`${REACT_APP_BASE_PATH}contact`}
+              data-path={`${REACT_APP_BASE_PATH}contact`}
             >
               <span className="header__font header__font--link">Contact</span>
             </NavLink>

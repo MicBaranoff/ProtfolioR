@@ -18,8 +18,8 @@ function Button({
   });
 
   function handleMouseMove(e) {
-    const current = button.current.getBoundingClientRect();
-    const movedBlock = circle.current.getBoundingClientRect();
+    const current = button.current?.getBoundingClientRect();
+    const movedBlock = circle.current?.getBoundingClientRect();
     const left = e.clientX - current.left - (movedBlock.width / 2);
     const top = e.clientY - current.top - (movedBlock.height / 2);
     setMousePosition({ left, top });

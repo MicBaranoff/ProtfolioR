@@ -17,8 +17,8 @@ function AchievesSection({ className = '' }) {
   });
 
   function handleMouseMove(e) {
-    const current = section.current.getBoundingClientRect();
-    const movedBlock = circle.current.getBoundingClientRect();
+    const current = section.current?.getBoundingClientRect();
+    const movedBlock = circle.current?.getBoundingClientRect();
     const left = e.clientX - current.left - (movedBlock.width / 2);
     const top = e.clientY - current.top - (movedBlock.height / 2);
     setMousePosition({ left, top });
