@@ -1,11 +1,12 @@
 .about-main-section {
-  min-height: 100vh;
   padding-top: rem(180);
+  padding-bottom: rem(100);
 
   @include is-mobile {
     padding-top: rem(120);
+    padding-bottom: rem(50);
     min-height: 0;
-    margin-bottom: rem(80);
+    margin-bottom: 0;
   }
 
   &__font {

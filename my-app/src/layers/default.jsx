@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
+import { useEffect } from 'react';
 
 function DefaultLayer({ children, className = '' }) {
   const { scroll } = useLocomotiveScroll();
@@ -9,6 +10,12 @@ function DefaultLayer({ children, className = '' }) {
   const disableScroll = () => {
     scroll.stop();
   };
+
+  useEffect(() => {
+    new ResizeObserver(() => {
+      scroll?.update();
+    }).observe(document.querySelector('[data-scroll-container]'));
+  }, []);
 
   return (
     <motion.div

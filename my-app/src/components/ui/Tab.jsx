@@ -1,37 +1,39 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { animate } from 'framer-motion';
-
-import { useLocomotiveScroll } from 'react-locomotive-scroll';
 
 const template = {
   title: 'title example',
   text: 'text example',
 };
 
-function Tab({ data = template, className = '' }) {
-  const [isOpen, setIsOpen] = useState(false);
+function Tab({
+  data = template,
+  className = '',
+  onClickHandler = () => {},
+  isOpen = false,
+}) {
   const content = useRef();
-  const { scroll } = useLocomotiveScroll();
 
   const animationHandler = (options = {}) => {
-    animate(content.current, options, { duration: 0.3 }).then(() => {
-      console.log(scroll);
-    });
+    animate(content.current, options, { duration: 0.3 });
   };
-  const toggleTab = () => {
-    setIsOpen(!isOpen);
 
-    if (isOpen) {
+  useEffect(() => {
+    if (!isOpen) {
       animationHandler({ height: 0, marginBottom: 0 });
     } else {
       animationHandler({ height: 'auto', marginBottom: 15 });
     }
-  };
+  }, [isOpen]);
+
   return (
-    <div className={`tab ${isOpen ? 'tab--active' : ''} ${className}`}>
+    <div
+      onClick={onClickHandler}
+      aria-hidden="true"
+      className={`tab ${isOpen ? 'tab--active' : ''} ${className}`}
+    >
       <div
-        onClick={toggleTab}
         aria-hidden="true"
         className="tab__title"
       >

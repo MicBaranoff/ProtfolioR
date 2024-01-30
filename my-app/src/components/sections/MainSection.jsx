@@ -29,7 +29,7 @@ function MainSection({ className = '', clickHandler = () => {} }) {
             ref={title}
             className="main-section__font main-section__font--title"
             data-scroll
-            data-scroll-speed="1"
+            data-scroll-speed="3"
             data-scroll-delay="0.05"
             data-scroll-offset="10%"
           >
@@ -72,7 +72,7 @@ function MainSection({ className = '', clickHandler = () => {} }) {
           </div>
           <div
             data-scroll
-            data-scroll-speed="1.2"
+            data-scroll-speed="1.5"
             data-scroll-delay="0.05"
             data-scroll-offset="10%"
             className="main-section__text"

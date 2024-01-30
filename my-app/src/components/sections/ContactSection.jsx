@@ -11,7 +11,7 @@ function ContactSection({ className }) {
   }, []);
 
   return (
-    <div data-scroll data-scroll-section data-scroll-offset="20%" className={`contact-section ${className}`}>
+    <div data-scroll data-scroll-section data-scroll-offset="30%" className={`contact-section ${className}`}>
       <div className="container contact-section__wrapper">
         <div className="contact-section__title">
           <h2
@@ -20,7 +20,7 @@ function ContactSection({ className }) {
             data-scroll
             data-scroll-speed="2"
             data-scroll-delay="0.05"
-            data-scroll-offset="10%"
+            data-scroll-offset="30%"
           >
             Let’s talk!
           </h2>

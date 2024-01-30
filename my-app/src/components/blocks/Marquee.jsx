@@ -1,4 +1,4 @@
-function Marquee({ className, text }) {
+function Marquee({ className = '', text }) {
   return (
     <div
       data-scroll-section
