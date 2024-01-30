@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/ProtfolioR/static/css/main.b2a1efca.css",
+    "main.js": "/ProtfolioR/static/js/main.17c078c3.js",
+    "static/media/Montserrat-ExtraBold.ttf": "/ProtfolioR/static/media/Montserrat-ExtraBold.6c8b198832c88c649faa.ttf",
+    "static/media/Montserrat-Bold.ttf": "/ProtfolioR/static/media/Montserrat-Bold.50f0257aa1e905f4bfaf.ttf",
+    "static/media/Montserrat-SemiBold.ttf": "/ProtfolioR/static/media/Montserrat-SemiBold.93b37a465fc4ec0d0415.ttf",
+    "static/media/Montserrat-Medium.ttf": "/ProtfolioR/static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
+    "static/media/Montserrat-Regular.ttf": "/ProtfolioR/static/media/Montserrat-Regular.24785cc015b27a3e964b.ttf",
+    "static/media/three.png": "/ProtfolioR/static/media/three.7c862b1bad8407d307b0.png",
+    "static/media/example.png": "/ProtfolioR/static/media/example.be4721680107818580a7.png",
+    "static/media/vue.png": "/ProtfolioR/static/media/vue.2b12ad857f4b37073f09.png",
+    "static/media/gsap.png": "/ProtfolioR/static/media/gsap.f1e3e34a737bc395dcaa.png",
+    "static/media/react.png": "/ProtfolioR/static/media/react.885778c4c1d2856e1ea1.png",
+    "static/media/pixijs.svg": "/ProtfolioR/static/media/pixijs.ee1f48883344ea37eba7356589b00bac.svg",
+    "static/media/arrow-next-top.svg": "/ProtfolioR/static/media/arrow-next-top.99952c76b0fe9e2bdb6842fdcb7c2099.svg",
+    "static/media/arrow-next.svg": "/ProtfolioR/static/media/arrow-next.dd76a7291dad0f688ef71b26e8e2244c.svg",
+    "static/media/arrow-down.svg": "/ProtfolioR/static/media/arrow-down.061b7e3262ac45ff4747fa0daa2fd070.svg",
+    "index.html": "/ProtfolioR/index.html",
+    "main.b2a1efca.css.map": "/ProtfolioR/static/css/main.b2a1efca.css.map",
+    "main.17c078c3.js.map": "/ProtfolioR/static/js/main.17c078c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b2a1efca.css",
+    "static/js/main.17c078c3.js"
+  ]
+}
