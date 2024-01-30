@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { generateRandomGradient } from 'tools/helpers';
 
@@ -22,17 +22,21 @@ function ProjectCard({
 
   const MAX_TRANSFORM_VALUE = 50;
 
-  scroll?.on('scroll', (args) => {
-    if (!args) return;
+  useEffect(() => {
+    if (!scroll) return;
 
-    const currentElement = args?.currentElements?.[id];
-    const value = Math.ceil((currentElement?.progress || 0) * 100 * 1.2);
-    const { direction } = args;
+    scroll?.on('scroll', (args) => {
+      if (!args) return;
 
-    if (value <= MAX_TRANSFORM_VALUE) setScrollProgress(value);
+      const currentElement = args?.currentElements?.[id];
+      const value = Math.ceil((currentElement?.progress || 0) * 100 * 1.2);
+      const { direction } = args;
 
-    if (!currentElement && direction === 'up') setScrollProgress(MAX_TRANSFORM_VALUE);
-  });
+      if (value <= MAX_TRANSFORM_VALUE) setScrollProgress(value);
+
+      if (!currentElement && direction === 'up') setScrollProgress(MAX_TRANSFORM_VALUE);
+    });
+  }, [scroll]);
 
   return (
     <div

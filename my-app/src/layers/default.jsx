@@ -12,10 +12,12 @@ function DefaultLayer({ children, className = '' }) {
   };
 
   useEffect(() => {
+    if (!scroll) return;
+
     new ResizeObserver(() => {
       scroll?.update();
     }).observe(document.querySelector('[data-scroll-container]'));
-  }, []);
+  }, [scroll]);
 
   return (
     <motion.div

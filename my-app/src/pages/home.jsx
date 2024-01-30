@@ -16,7 +16,7 @@ function Home() {
   const scrollTo = (section) => {
     if (!section.current) return;
 
-    scroll.scrollTo(section.current, {
+    scroll?.scrollTo(section.current, {
       offset: -50,
       duration: 2 * 1000,
     });
