@@ -11,8 +11,8 @@
 
 .splitting .word {
   display: inline-block;
-  animation: slide-in .95s $transition-bounce both;
-  animation-delay: calc(.5s + (120ms * var(--word-index)));
+  animation: slide-in .65s ease-in-out both;
+  animation-delay: calc(.3s + (120ms * var(--word-index)));
   animation-play-state: paused;
 }
 

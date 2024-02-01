@@ -29,26 +29,29 @@ function Tab({
 
   return (
     <div
+      data-scroll
       onClick={onClickHandler}
       aria-hidden="true"
-      className={`tab ${isOpen ? 'tab--active' : ''} ${className}`}
+      className={`tab ${className}`}
     >
-      <div
-        aria-hidden="true"
-        className="tab__title"
-      >
-        <p className="tab__font tab__font--title">
-          {data?.title}
-        </p>
-        <div className="tab__btn">
-          <span />
-          <span />
+      <div className={`${isOpen ? 'tab--active' : ''}`}>
+        <div
+          aria-hidden="true"
+          className="tab__title"
+        >
+          <p className="tab__font tab__font--title">
+            {data?.title}
+          </p>
+          <div className="tab__btn">
+            <span />
+            <span />
+          </div>
         </div>
-      </div>
-      <div ref={content} className="tab__content">
-        <p className="tab__font tab__font--text">
-          {data?.text}
-        </p>
+        <div ref={content} className="tab__content">
+          <p className="tab__font tab__font--text">
+            {data?.text}
+          </p>
+        </div>
       </div>
     </div>
   );

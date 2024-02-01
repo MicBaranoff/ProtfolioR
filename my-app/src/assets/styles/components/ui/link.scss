@@ -1,0 +1,24 @@
+.link {
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  $parent: &;
+
+  &:hover {
+    span {
+      transform: translateY(-100%);
+    }
+  }
+
+  span {
+    display: block;
+    transition: transform .4s ease-in-out;
+
+    &:nth-child(2) {
+      position: absolute;
+      bottom: -100%;
+    }
+  }
+}

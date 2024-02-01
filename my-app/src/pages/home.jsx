@@ -17,8 +17,8 @@ function Home() {
     if (!section.current) return;
 
     scroll?.scrollTo(section.current, {
-      offset: -50,
-      duration: 2 * 1000,
+      offset: 300,
+      duration: 3 * 1000,
     });
   };
 

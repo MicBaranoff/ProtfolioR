@@ -1,8 +1,27 @@
 .tab {
   width: 100%;
   border-bottom: 1px solid $color-primary-100;
+  position: relative;
 
   $parent: &;
+
+  &.is-inview {
+    &:after,  &:before{
+      width: 0;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -1px;
+    content: '';
+    display: block;
+    width: 100%;
+    background: $color-primary-900;
+    transition: width .6s ease-in-out .5s;
+  }
 
   &__font {
     margin: 0;

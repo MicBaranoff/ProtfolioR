@@ -28,6 +28,7 @@
     .char {
       cursor: default;
       transition: color 3s 1s, text-shadow 3s 1s;
+      animation-delay: 0s;
       &:hover{
         transition: color 0s, text-shadow 0s;
         color: $color-primary-900;

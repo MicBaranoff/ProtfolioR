@@ -1,3 +1,5 @@
+import Link from 'components/ui/Link';
+
 function Footer() {
   return (
     <footer data-scroll-section className="footer">
@@ -8,9 +10,9 @@ function Footer() {
           </p>
 
           <div className="footer__links">
-            <a href="/" className="footer__font footer__font--text">Dribbble</a>
-            <a href="/" className="footer__font footer__font--text">Instagram</a>
-            <a href="/" className="footer__font footer__font--text">LinkedIn</a>
+            <Link to="/" className="footer__font footer__font--text">Dribbble</Link>
+            <Link to="/" className="footer__font footer__font--text">Instagram</Link>
+            <Link to="/" className="footer__font footer__font--text">LinkedIn</Link>
           </div>
         </div>
       </div>

@@ -5,4 +5,36 @@
   &__wrapper {
     min-width: 100vw;
   }
+
+  &__slasher {
+    min-width: 200vw;
+    width: 200vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+      backdrop-filter: invert(100%);
+    }
+
+  }
 }

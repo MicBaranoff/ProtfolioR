@@ -17,8 +17,6 @@ function Header() {
 
     const linkRect = linkElement?.getBoundingClientRect();
 
-    console.log(location.pathname);
-
     if (!linkRect) return;
 
     const offsetX = linkRect.left - highlight.current.parentElement.getBoundingClientRect().left;
