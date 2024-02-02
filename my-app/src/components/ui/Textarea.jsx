@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Field } from 'formik';
 
 function Textarea({
   name = '',
@@ -7,33 +7,19 @@ function Textarea({
   placeholder = '',
   error = '',
 }) {
-  const textarea = useRef();
-
   return (
     <div
       data-scroll
       className={` textarea ${error && ' textarea--error'}`}
     >
-      <textarea
-        ref={textarea}
+      <Field
+        as="textarea"
         className=" textarea__field"
         name={name}
         disabled={disabled}
         required={required}
         placeholder={placeholder}
       />
-
-      {
-                error && (
-                <div className=" textarea__footer">
-                  <span
-                    className=" textarea__font  textarea__font--error"
-                  >
-                    { error }
-                  </span>
-                </div>
-                )
-            }
     </div>
   );
 }

@@ -6,17 +6,32 @@ import { Formik, Form } from 'formik';
 
 import baseSchemas from 'tools/validationRules';
 
+import { send } from '@emailjs/browser';
+
 const initialValues = {
-  name: '',
+  firstName: '',
   email: '',
   message: '',
 };
 
+const SERVICE_ID = process.env.REACT_APP_FORM_SERVICE_ID;
+const TEMPLATE_ID = process.env.REACT_APP_FORM_TEMPLATE_ID;
+const PUBLIC_KEY = process.env.REACT_APP_FORM_PUBLIC_KEY;
+
 function ContactForm() {
+  const onSubmitHandler = (values) => {
+    send(SERVICE_ID, TEMPLATE_ID, values, PUBLIC_KEY)
+      .then((response) => {
+        console.log('SUCCESS!', response);
+      }, (error) => {
+        console.log('FAILED...', error);
+      });
+  };
+
   return (
     <div className="contact-form">
       <Formik
-        onSubmit={() => {}}
+        onSubmit={(values) => onSubmitHandler(values)}
         validationSchema={baseSchemas.custom}
         initialValues={initialValues}
       >
@@ -42,9 +57,9 @@ function ContactForm() {
 
           <Button
             className="contact-form__button"
+            type="submit"
             text="SUBMIT"
             icon="arrow-next"
-            onClick={() => {}}
           />
         </Form>
       </Formik>
