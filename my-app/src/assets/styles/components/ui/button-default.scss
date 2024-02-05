@@ -45,6 +45,11 @@
 
   $parent: &;
 
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
   &__bg {
     display: block;
     position: absolute;

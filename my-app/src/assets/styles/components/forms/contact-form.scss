@@ -1,8 +1,29 @@
 .contact-form {
 
+  &__font {
+    &--result {
+      font-size: rem(16);
+    }
+
+    &--error {
+      font-size: rem(16);
+      color: $color-secondary-600;
+    }
+  }
+
   &__button {
     margin-top: rem(30);
     width: rem(180);
     margin-left: auto;
+  }
+
+  &__form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__form-result {
+    max-width: 60%;
   }
 }

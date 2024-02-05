@@ -13,6 +13,7 @@ function Button({
   modifier = buttonTypes.simple,
   onClick = () => {},
   type = 'button',
+  disabled = false,
 }) {
   const button = useRef();
   const circle = useRef();
@@ -35,6 +36,7 @@ function Button({
       ref={button}
       type={type}
       className={`${modifier && `button-default--${modifier}`} button-default ${className}`}
+      disabled={disabled}
       initial={{ scale: 0 }}
       whileInView={{
         scale: 1,

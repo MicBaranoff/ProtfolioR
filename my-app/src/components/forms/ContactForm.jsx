@@ -7,6 +7,7 @@ import { Formik, Form } from 'formik';
 import baseSchemas from 'tools/validationRules';
 
 import { send } from '@emailjs/browser';
+import { useState } from 'react';
 
 const initialValues = {
   firstName: '',
@@ -18,13 +19,20 @@ const SERVICE_ID = process.env.REACT_APP_FORM_SERVICE_ID;
 const TEMPLATE_ID = process.env.REACT_APP_FORM_TEMPLATE_ID;
 const PUBLIC_KEY = process.env.REACT_APP_FORM_PUBLIC_KEY;
 
-function ContactForm() {
+function ContactForm({ onSubmit = () => {} }) {
+  const [requestInProgress, setRequestInProgress] = useState(false);
+  const [error, setError] = useState(null);
+
   const onSubmitHandler = (values) => {
+    setRequestInProgress(true);
+
     send(SERVICE_ID, TEMPLATE_ID, values, PUBLIC_KEY)
-      .then((response) => {
-        console.log('SUCCESS!', response);
-      }, (error) => {
-        console.log('FAILED...', error);
+      .then(() => {
+        onSubmit();
+      }, () => {
+        setError('Error, please try again... ❌');
+      }).finally(() => {
+        setRequestInProgress(false);
       });
   };
 
@@ -55,12 +63,20 @@ function ContactForm() {
             placeholder="Your message"
           />
 
-          <Button
-            className="contact-form__button"
-            type="submit"
-            text="SUBMIT"
-            icon="arrow-next"
-          />
+          <div className="contact-form__form-footer">
+            <div className="contact-form__form-result">
+              {error
+                  && <span className="contact-form__font contact-form__font--error">{error}</span>}
+            </div>
+            <Button
+              className="contact-form__button"
+              type="submit"
+              text={!requestInProgress ? 'SUBMIT' : 'SENDING'}
+              icon={!requestInProgress ? 'arrow-next' : 'loading'}
+              disabled={requestInProgress}
+            />
+          </div>
+
         </Form>
       </Formik>
     </div>

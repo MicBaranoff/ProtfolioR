@@ -1,17 +1,27 @@
 import DefaultLayer from 'layers/default';
+
 import ContactForm from 'components/forms/ContactForm';
 import Link from 'components/ui/Link';
-import { useEffect, useRef } from 'react';
+import SuccessPopup from 'components/popups/SuccessPopup';
+
+import { useEffect, useRef, useState } from 'react';
+
 import Splitting from 'splitting';
 
 function Contact() {
   const title1 = useRef(null);
   const title2 = useRef(null);
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   useEffect(() => {
     Splitting({ target: title1.current });
     Splitting({ target: title2.current });
   }, []);
+
+  const showSuccessPopup = () => {
+    setFormSubmitted(true);
+  };
 
   return (
     <DefaultLayer>
@@ -29,7 +39,7 @@ function Contact() {
               >
                 SEND ME A MESSAGE:
               </h4>
-              <ContactForm />
+              <ContactForm onSubmit={showSuccessPopup} />
             </div>
             <div className="contact-page__links">
               <h4
@@ -69,6 +79,8 @@ function Contact() {
             </div>
           </div>
         </div>
+
+        {formSubmitted && <SuccessPopup />}
       </div>
     </DefaultLayer>
   );

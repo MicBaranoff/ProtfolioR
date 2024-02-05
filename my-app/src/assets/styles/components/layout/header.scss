@@ -75,7 +75,7 @@
     background: transparent;
     border-radius: rem(50);
     z-index: 2;
-    transition: width .5s linear, left .7s $transition-bounce;
+    transition: width .5s linear, left .4s ease;
     backdrop-filter: invert(100%);
     pointer-events: none;
   }

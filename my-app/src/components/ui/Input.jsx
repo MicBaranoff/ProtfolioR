@@ -10,6 +10,7 @@ function Input({
 }) {
   return (
     <div
+      className="input"
       data-scroll
     >
       <Field
