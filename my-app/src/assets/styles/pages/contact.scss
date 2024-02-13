@@ -2,6 +2,16 @@
   padding-top: rem(220);
   min-height: 100vh;
 
+  $parent: &;
+
+  &.is-inview {
+    #{$parent} {
+      &__link {
+        opacity: 1;
+      }
+    }
+  }
+
   @include is-mobile {
     padding-top: rem(120);
     min-height: 0;
@@ -39,6 +49,8 @@
     font-size: rem(22);
     margin-top: rem(10);
     display: inline-block;
+    opacity: 0;
+    transition: all .3s ease .6s;
 
     @include is-mobile {
       font-size: rem(18);

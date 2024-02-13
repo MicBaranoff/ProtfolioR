@@ -27,7 +27,7 @@ function Home() {
       <div className="home-page ">
         <MainSection clickHandler={() => scrollTo(projectsSection)} className="home-page__main" />
         <SomeProjectsSection innerRef={projectsSection} className="home-page__projects" />
-        <Marquee text="Visual design for digital experiences" />
+        <Marquee text="Front-end dev for digital experiences" />
         <GoalsSection className="home-page__goals" />
         <AchievesSection className="home-page__testimonials" />
         <ContactSection className="home-page__contact" />

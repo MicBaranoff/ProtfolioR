@@ -41,6 +41,26 @@ function DefaultLayer({ children, className = '' }) {
             viewport={{ once: true }}
             className="default-layout__slasher"
           />
+          {/* <motion.div */}
+          {/*  initial={{ */}
+          {/*    opacity: 1, */}
+          {/*    transition: { */}
+          {/*      duration: 1, */}
+          {/*    }, */}
+          {/*  }} */}
+          {/*  whileInView={{ */}
+          {/*    opacity: 0, */}
+          {/*    transition: { */}
+          {/*      duration: 1, */}
+          {/*      delay: 1.3, */}
+          {/*    }, */}
+          {/*  }} */}
+          {/*  exit={{ */}
+          {/*    opacity: 0, */}
+          {/*  }} */}
+          {/*  viewport={{ once: true }} */}
+          {/*  className="default-layout__loader" */}
+          {/* /> */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{

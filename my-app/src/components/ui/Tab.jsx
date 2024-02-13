@@ -48,9 +48,8 @@ function Tab({
           </div>
         </div>
         <div ref={content} className="tab__content">
-          <p className="tab__font tab__font--text">
-            {data?.text}
-          </p>
+          {/* eslint-disable-next-line react/no-danger */}
+          <p dangerouslySetInnerHTML={{ __html: data?.text }} className="tab__font tab__font--text" />
         </div>
       </div>
     </div>

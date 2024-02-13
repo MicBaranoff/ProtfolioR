@@ -25,11 +25,13 @@ function Contact() {
 
   return (
     <DefaultLayer>
-      <div className="contact-page">
+      <div
+        data-scroll
+        data-scroll-section
+        className="contact-page"
+      >
         <div className="container">
           <div
-            data-scroll
-            data-scroll-section
             className="contact-page__wrapper"
           >
             <div className="contact-page__form">

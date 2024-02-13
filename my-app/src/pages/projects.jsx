@@ -8,6 +8,8 @@ import { useEffect, useRef } from 'react';
 import Splitting from 'splitting';
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
 
+const { REACT_APP_BASE_PATH } = process.env;
+
 function Projects() {
   const title = useRef(null);
   const desc = useRef(null);
@@ -72,8 +74,8 @@ function Projects() {
                         id={project.id}
                         title={project.title}
                         text={project.text}
-                        link={project.link}
-                        image={project?.image}
+                        link={`${REACT_APP_BASE_PATH}projects${project.link}`}
+                        image={project?.images?.[0]}
                       />
                     ))
                 }

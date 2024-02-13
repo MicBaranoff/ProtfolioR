@@ -1,8 +1,11 @@
-function Link({ className = '', to = '', children }) {
+function Link({
+  className = '', to = '', cRef, children,
+}) {
   return (
     <a
       className={`link ${className}`}
       href={to}
+      ref={cRef}
       target="_blank"
       rel="noreferrer"
     >

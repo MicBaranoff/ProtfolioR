@@ -1,0 +1,146 @@
+.project-page {
+  padding-top: rem(180);
+  min-height: 100vh;
+  background: #000;
+
+  $parent: &;
+
+  @include is-mobile {
+    padding-top: rem(120);
+  }
+
+  &.is-inview {
+    #{$parent} {
+      &__back {
+        transform: none;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__font {
+    &--title {
+      font-size: rem(107);
+      font-weight: 800;
+      line-height: 90%;
+      letter-spacing: rem(-5);
+
+      @include is-mobile {
+        font-size: rem(48);
+        letter-spacing: rem(-2);
+      }
+    }
+
+    &--text {
+      font-size: rem(20);
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: -0.2px;
+      text-decoration: none;
+
+      @include is-mobile {
+        font-size: rem(14);
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    margin-bottom: rem(35);
+
+    @include is-mobile {
+      display: flex;
+      gap: rem(10);
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: rem(780);
+    margin-top: rem(50);
+    position: relative;
+
+    @include is-tablet {
+      width: 100%;
+      max-width: 100%;
+      margin-top: rem(50);
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0; top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      box-shadow: inset 0 0 15px 15px $color-primary-900;
+
+      @include is-mobile {
+        box-shadow: inset 0 0 5px 5px $color-primary-900;
+      }
+    }
+
+    &:nth-child(1) {
+      margin-top: rem(50);
+    }
+
+    &:nth-child(even) {
+      margin-left: auto;
+    }
+  }
+
+  //&__image-pic {
+  //  max-width: none;
+  //  min-width: 0;
+  //  max-height: none;
+  //  min-height: 0;
+  //  width: 100%;
+  //  height: 150%;
+  //  object-fit: cover;
+  //  object-position: center;
+  //
+  //  @include is-tablet {
+  //    width: 100%;
+  //    height: 100%;
+  //  }
+  //}
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin: rem(100) auto 0;
+  }
+
+  &__back {
+    display: block;
+    position: absolute;
+    left: rem(-45);
+    top: rem(30);
+    -webkit-appearance: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    width: rem(30);
+    color: $color-primary-100;
+
+    transition: transform .3s ease 1s, opacity .3s ease 1s;
+    transform: translateX(50px);
+    opacity: 0;
+
+    @include is-mobile {
+      position: static;
+      width: rem(20);
+      margin-top: rem(7);
+    }
+
+    &-ico {
+      width: 100%;
+      transform: scale(-1);
+    }
+  }
+}

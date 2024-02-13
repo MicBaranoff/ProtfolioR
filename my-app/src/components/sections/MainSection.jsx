@@ -3,6 +3,7 @@ import Button from 'components/ui/Button';
 import { useEffect, useRef } from 'react';
 
 import Splitting from 'splitting';
+import Link from '../ui/Link';
 
 function MainSection({ className = '', clickHandler = () => {} }) {
   const title = useRef(null);
@@ -62,13 +63,14 @@ function MainSection({ className = '', clickHandler = () => {} }) {
             <p ref={lets} className="main-section__font main-section__font--subtitle">
               Let’s Talk
             </p>
-            <a
-              ref={email}
+
+            <Link
+              cRef={email}
+              to="/"
               className="main-section__font main-section__font--text"
-              href="mailto:senior.mishel@gmail.com"
             >
               senior.mishel@gmail.com
-            </a>
+            </Link>
           </div>
           <div
             data-scroll
@@ -78,8 +80,12 @@ function MainSection({ className = '', clickHandler = () => {} }) {
             className="main-section__text"
           >
             <p ref={desc} className="main-section__font main-section__font--text">
-              Hello, I’m Michael, an online product designer focusing on brand identity,
-              advertising, and no-code instruments.
+
+              Hello, I`m Michael, a frontend developer.
+              <br />
+              I craft engaging and responsive
+              web projects using the latest technologies and best practices.
+              Ready to bring your ideas to life!
             </p>
           </div>
         </div>

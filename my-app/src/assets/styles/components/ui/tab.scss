@@ -27,7 +27,7 @@
     margin: 0;
 
     &--title {
-      font-size: rem(38);
+      font-size: rem(28);
       font-weight: 600;
       line-height: 120%;
       letter-spacing: -0.48px;
@@ -53,6 +53,7 @@
     position: relative;
     width: rem(10);
     height: rem(10);
+    margin-left: rem(20);
 
     span {
       position: absolute;

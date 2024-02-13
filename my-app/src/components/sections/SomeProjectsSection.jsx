@@ -9,6 +9,8 @@ import ProjectCard from 'components/cards/ProjectCard';
 
 import projects from 'configs/projects';
 
+const { REACT_APP_BASE_PATH } = process.env;
+
 function SomeProjectsSection({ className, innerRef }) {
   const title = useRef(null);
   const desc = useRef(null);
@@ -62,15 +64,15 @@ function SomeProjectsSection({ className, innerRef }) {
 
         <div className="some-projects-section__grid">
           {
-            projects.slice(0, 4).map((project) => (
+            projects.slice(0, 2).map((project) => (
               <ProjectCard
                 className="some-projects-section__project"
                 key={project.id}
                 id={project.id}
                 title={project.title}
                 text={project.text}
-                link={project.link}
-                image={project?.image}
+                link={`${REACT_APP_BASE_PATH}projects${project.link}`}
+                image={project?.images?.[0]}
               />
             ))
           }

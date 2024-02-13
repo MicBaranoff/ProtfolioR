@@ -93,8 +93,9 @@
     }
 
     &-image {
+      border-radius: rem(20) 0 0 rem(20);
       position: absolute;
-      bottom: 0;
+      bottom: -3%;
       right: 0;
       max-width: 85%;
       max-height: 85%;
