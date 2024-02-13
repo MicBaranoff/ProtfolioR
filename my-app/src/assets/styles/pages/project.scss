@@ -1,7 +1,6 @@
 .project-page {
   padding-top: rem(180);
   min-height: 100vh;
-  background: #000;
 
   $parent: &;
 
@@ -52,6 +51,10 @@
       display: flex;
       gap: rem(10);
     }
+  }
+
+  &__desc {
+    max-width: rem(768);
   }
 
   &__image {

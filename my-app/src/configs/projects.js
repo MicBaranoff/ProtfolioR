@@ -4,7 +4,9 @@ export default [
   {
     id: 'unilex',
     title: 'Unilex',
-    text: 'Project Unilex, developed in 2021, HTML/CSS/JS used',
+    text: '"Unilex" - a website developed in 2021 using HTML, CSS and JavaScript, provides information about'
+        + ' the company\'s legal services. This front-end project provides a convenient interface for visitors'
+        + ' to learn about the services provided and contact the company',
     link: '/unilex',
     url: 'http://unilex.legal/',
     images: [
@@ -16,7 +18,9 @@ export default [
   {
     id: 'knska',
     title: 'KNSKA',
-    text: 'Project KNSKA, developed in 2021, HTML/CSS/JS used',
+    text: '"KNSKA" - a website developed in 2021 using HTML, CSS and JavaScript, provides information about '
+        + 'the company`s PR services. This front-end project provides a user-friendly interface for visitors to'
+        + ' explore services, contact the company and get more information.',
     link: '/knska',
     url: 'https://knska.com/',
     images: [

@@ -22,6 +22,10 @@ html.has-scroll-dragging {
 [data-scroll-container], [data-scroll-section] {
   //transform-style: preserve-3d;
   will-change: transform;
+
+  @include is-mobile {
+    will-change: unset;
+  }
 }
 
 .has-scroll-smooth [data-scroll-container] {

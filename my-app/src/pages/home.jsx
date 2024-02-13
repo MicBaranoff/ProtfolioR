@@ -11,6 +11,7 @@ import { useLocomotiveScroll } from 'react-locomotive-scroll';
 
 function Home() {
   const projectsSection = useRef();
+
   const { scroll } = useLocomotiveScroll();
 
   const scrollTo = (section) => {

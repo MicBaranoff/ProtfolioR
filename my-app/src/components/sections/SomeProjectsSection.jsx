@@ -55,8 +55,13 @@ function SomeProjectsSection({ className, innerRef }) {
             </p>
           </div>
           <div className="some-projects-section__head-button">
-            <NavLink className="some-projects-section__link" to="/">
-              <span className="some-projects-section__font some-projects-section__font--link">More</span>
+            <NavLink
+              className="some-projects-section__link"
+              to={`${REACT_APP_BASE_PATH}projects`}
+            >
+              <span className="some-projects-section__font some-projects-section__font--link">
+                More projects
+              </span>
               <Icon className="some-projects-section__link-ico" name="arrow-next" />
             </NavLink>
           </div>

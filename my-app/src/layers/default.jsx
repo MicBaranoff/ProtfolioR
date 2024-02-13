@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
+
+import CirclesScene from '../scripts/circlesScene';
 
 function DefaultLayer({ children, className = '' }) {
   const { scroll } = useLocomotiveScroll();
@@ -18,6 +20,15 @@ function DefaultLayer({ children, className = '' }) {
       scroll?.update();
     }).observe(document.querySelector('[data-scroll-container]'));
   }, [scroll]);
+
+  const scene = useCallback((node) => {
+    if (node) {
+      const circles = new CirclesScene({
+        el: node,
+      });
+      circles.init();
+    }
+  }, []);
 
   return (
     scroll
@@ -75,6 +86,7 @@ function DefaultLayer({ children, className = '' }) {
             viewport={{ once: true }}
             className={`default-layout ${className}`}
           >
+            <div ref={scene} className="default-layout__scene" id="scene" />
             <div className="default-layout__wrapper">
               {children}
             </div>

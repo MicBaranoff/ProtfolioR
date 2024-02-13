@@ -56,7 +56,6 @@
     align-items: center;
     gap: rem(7);
     text-decoration: none;
-    color: $color-primary-900;
 
     @include is-mobile {
       position: absolute;

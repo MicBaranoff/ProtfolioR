@@ -3,6 +3,8 @@
   position: relative;
 
   &__wrapper {
+    position: relative;
+    z-index: 2;
     min-width: 100vw;
   }
 
@@ -58,5 +60,15 @@
 
     backdrop-filter: invert(100%);
     pointer-events: none;
+  }
+
+  &__scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
   }
 }
