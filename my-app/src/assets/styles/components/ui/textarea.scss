@@ -1,27 +1,12 @@
 .textarea {
+  display: block;
+  position: relative;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 
   $parent: &;
 
-  display: block;
-  position: relative;
-
   &.is-inview {
-    &:after,  &:before{
-      width: 0;
-    }
-  }
-
-  &:after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: -1px;
-    content: '';
-    display: block;
-    width: 100%;
-    background: $color-primary-900;
-    transition: width .6s ease-in-out .5s;
-    z-index: 2;
+    animation: block-show .65s ease-in-out both;
   }
 
   &__font {

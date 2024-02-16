@@ -42,12 +42,15 @@ function ProjectCard({
     <div
       data-scroll
       data-scroll-id={id}
+      style={{
+        clipPath: `polygon(${50 - scrollProgress}% 0,
+                  ${50 + scrollProgress}% 0,
+                  ${50 + scrollProgress}% 100%,
+                  ${50 - scrollProgress}% 100%
+        )`,
+      }}
       className={`project-card ${className}`}
     >
-      <div className="project-card__cover">
-        <div style={{ width: `${50 - scrollProgress}%` }} className="project-card__cover-left" />
-        <div style={{ width: `${50 - scrollProgress}%` }} className="project-card__cover-right" />
-      </div>
       <NavLink to={link} className="project-card__link" />
       <div style={{ background: randomBackground }} className="project-card__banner">
         <img

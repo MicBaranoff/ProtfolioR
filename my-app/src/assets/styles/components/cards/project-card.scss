@@ -1,6 +1,15 @@
 .project-card{
+
+
   max-width: rem(592);
   position: relative;
+  //clip-path: polygon(
+  //                calc(var(--mask-progress) * 100%) 0,
+  //                calc((100 - var(--mask-progress)) * 100%) 0,
+  //                calc((100 - var(--mask-progress)) * 100%) 100%,
+  //                calc(var(--mask-progress) * 100%) 100%
+  //);
+  //clip-path: polygon(calc(var(--mask-progress) * 100%) 32%, 100% 0, 55% 63%, 0 100%);
 
   $parent: &;
 
@@ -43,34 +52,6 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
-    }
-  }
-
-  &__cover {
-    pointer-events: none;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    //backdrop-filter: invert(100%);
-
-    &-left {
-      position: absolute;
-      left: 0;
-      height: 100%;
-      width: 50%;
-      background: $color-primary-900;
-      //transition: width .1s linear;
-    }
-    &-right {
-      position: absolute;
-      right: 0;
-      height: 100%;
-      width: 50%;
-      background: $color-primary-900;
-      //transition: width .1s linear;
     }
   }
 
