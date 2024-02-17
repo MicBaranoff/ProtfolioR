@@ -24,7 +24,9 @@
   }
 
   &:nth-child(1) {
-    clip-path: unset!important;
+    @include is-mobile {
+      clip-path: unset!important;
+    }
   }
 
   &__font {
