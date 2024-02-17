@@ -2,7 +2,11 @@ import { motion } from 'framer-motion';
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
 import { useCallback, useEffect } from 'react';
 
+import isMobile from 'ismobilejs';
+
 import CirclesScene from '../scripts/circlesScene';
+
+const isMobileDevice = isMobile(window.navigator).any;
 
 function DefaultLayer({ children, className = '' }) {
   const { scroll } = useLocomotiveScroll();
@@ -25,6 +29,7 @@ function DefaultLayer({ children, className = '' }) {
     if (node) {
       const circles = new CirclesScene({
         el: node,
+        isMobile: isMobileDevice,
       });
       circles.init();
     }

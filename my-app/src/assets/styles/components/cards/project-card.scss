@@ -24,13 +24,7 @@
   }
 
   &:nth-child(1) {
-    #{$parent} {
-      &__cover {
-        @include is-mobile {
-          display: none;
-        }
-      }
-    }
+    clip-path: unset!important;
   }
 
   &__font {

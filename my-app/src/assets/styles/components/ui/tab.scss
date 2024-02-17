@@ -39,6 +39,7 @@
   &__btn {
     position: relative;
     width: rem(10);
+    min-width: rem(10);
     height: rem(10);
     margin-left: rem(20);
 
