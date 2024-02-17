@@ -1,8 +1,8 @@
 // Paths
 // -------------------------
-$alias: '../../../..';
-$img-path: '#{$alias}/assets/images/';
-$font-path: '#{$alias}/assets/fonts/';
+$alias: '../../../../..';
+
+$font-path: '#{$alias}/public/static/fonts/';
 
 // Typography
 // -------------------------
@@ -23,7 +23,7 @@ $bold: 700 !default;
 $ultra-bold: 800 !default;
 $black: 900 !default;
 
-$font-default: 'Montserrat';
+$font-default: 'Montserrat', $sans;
 $font-accent: '', $sans;
 
 // Colors

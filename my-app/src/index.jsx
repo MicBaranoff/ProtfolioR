@@ -8,6 +8,7 @@ import Locomotive from 'components/overlays/Locomotive';
 import AnimatedRoutes from 'components/overlays/AnimatedRoutes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <Router>
     <Locomotive>

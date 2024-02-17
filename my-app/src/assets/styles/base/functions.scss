@@ -1,6 +1,16 @@
+@use 'sass:math';
+
 @function randomNum($min, $max) {
   $rand: random();
   $randomNum: $min + floor($rand * (($max - $min) + 1));
 
   @return $randomNum;
+}
+
+@function rem($value, $delimeter: $base-font-size) {
+  @return #{math.div($value, $delimeter)}rem
+}
+
+@function calc-between-width($width-start, $value-start, $width-end, $value-end) {
+  @return calc(#{$value-start} * 1px + (#{$value-end} - #{$value-start}) * (100vw - #{$width-start} * 1px) / (#{$width-end} - #{$width-start}))
 }
