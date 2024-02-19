@@ -29,6 +29,9 @@ class CircleGenerator {
         showAngleIndicator: true,
       },
     });
+
+    this.engine.world.gravity.y = 0.2;
+    this.engine.world.gravity.scale = 0.001;
   }
 
   generateCircles() {
@@ -41,6 +44,7 @@ class CircleGenerator {
         (window.innerWidth / (this.isMobile ? 7 : 15))
           + Math.random()
           * (window.innerWidth / (this.isMobile ? 14 : 30)),
+        { restitution: 0.7 },
       );
       Matter.Composite.add(this.engine.world, circle);
 
@@ -127,6 +131,16 @@ class CircleGenerator {
 
   destroy() {
     window.removeEventListener('resize', this.onResize.bind(this));
+
+    this.circles.forEach((circle) => {
+      this.app.stage.removeChild(circle.graphics);
+    });
+
+    this.app.destroy();
+
+    Matter.Composite.clear(this.engine.world);
+
+    this.circles = [];
   }
 }
 
