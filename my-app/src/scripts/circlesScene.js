@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import * as Matter from 'matter-js';
 
 class CircleGenerator {
-  constructor({ el = null, isMobile = false, quantity = 10 }) {
+  constructor({ el = null, isMobile = false, quantity = 12 }) {
     this.isMobile = isMobile;
 
     this.app = new PIXI.Application({
@@ -25,13 +25,23 @@ class CircleGenerator {
       options: {
         width: window.innerWidth,
         height: window.innerHeight,
-        showVelocity: true,
-        showAngleIndicator: true,
       },
     });
 
+    this.mouseConstraint = null;
+
     this.engine.world.gravity.y = 0.2;
-    this.engine.world.gravity.scale = 0.001;
+    this.engine.world.gravity.scale = 0.0005;
+  }
+
+  createCircleTexture(diameter) {
+    const circleGraphics = new PIXI.Graphics();
+    const randomFillColor = Math.random() * 0xFFFFFF;
+    circleGraphics.beginFill(randomFillColor);
+    circleGraphics.drawCircle(0, 0, diameter);
+    circleGraphics.endFill();
+
+    return this.app.renderer.generateTexture(circleGraphics);
   }
 
   generateCircles() {
@@ -40,37 +50,62 @@ class CircleGenerator {
       // matter
       const circle = Matter.Bodies.circle(
         Math.random() * window.innerWidth,
-        Math.random() * 100,
+        Math.random() * 10,
         (window.innerWidth / (this.isMobile ? 7 : 15))
           + Math.random()
           * (window.innerWidth / (this.isMobile ? 14 : 30)),
-        { restitution: 0.7 },
+        { restitution: 0.6, slop: 0 },
       );
       Matter.Composite.add(this.engine.world, circle);
 
       // pixi
-      const circleGraphics = new PIXI.Graphics();
-      circleGraphics.beginFill(Math.random() * 0xFFFFFF);
-      circleGraphics.drawCircle(0, 0, circle.circleRadius);
-      circleGraphics.endFill();
-      circleGraphics.x = circle.position.x;
-      circleGraphics.y = circle.position.y;
-      this.app.stage.addChild(circleGraphics);
+      const circleSprite = new PIXI.Sprite(this.createCircleTexture(circle.circleRadius));
+      circleSprite.x = circle.position.x;
+      circleSprite.y = circle.position.y;
+      circleSprite.anchor.set(0.5);
 
-      this.circles.push({ graphics: circleGraphics, body: circle });
+      this.app.stage.addChild(circleSprite);
+
+      this.circles.push({ graphics: circleSprite, body: circle });
     }
+
+    console.log(this.circles);
+  }
+
+  addMouse() {
+    const mouse = Matter.Mouse.create(document.body);
+    this.mouseConstraint = Matter.MouseConstraint.create(this.engine, {
+      mouse,
+      constraint: {
+        stiffness: 0.0002,
+        render: {
+          visible: false,
+        },
+      },
+    });
+
+    Matter.World.add(this.engine.world, this.mouseConstraint);
+
+    this.render.mouse = mouse;
   }
 
   onResize() {
-    // get the current window size
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    this.app.renderer.resize(width, height);
+    this.app?.renderer?.resize(width, height);
   }
 
   createBoundaries() {
     // Scene walls
+    const ceiling = Matter.Bodies.rectangle(
+      this.app.renderer.width / 2,
+      -this.app.renderer.height + 1,
+      this.app.renderer.width,
+      1,
+      { isStatic: true },
+    );
+
     const floor = Matter.Bodies.rectangle(
       this.app.renderer.width / 2,
       this.app.renderer.height,
@@ -81,32 +116,38 @@ class CircleGenerator {
 
     const leftWall = Matter.Bodies.rectangle(
       -1,
-      this.app.renderer.height / 2,
+      0,
       1,
-      this.app.renderer.height,
+      this.app.renderer.height * 2,
       { isStatic: true },
     );
 
     const rightWall = Matter.Bodies.rectangle(
       this.app.renderer.width - 1,
-      this.app.renderer.height / 2,
+      0,
       1,
-      this.app.renderer.height,
+      this.app.renderer.height * 2,
       { isStatic: true },
     );
 
-    this.bounds = [floor, leftWall, rightWall];
+    this.bounds = [floor, ceiling, leftWall, rightWall];
     Matter.Composite.add(this.engine.world, this.bounds);
   }
 
-  animate() {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const circle of this.circles) {
+  updateCirclesPosition() {
+    this.circles.forEach((circle) => {
       circle.graphics.x = circle.body.position.x;
       circle.graphics.y = circle.body.position.y;
-    }
+      circle.rotation = circle.body.angle;
+    });
+  }
 
-    requestAnimationFrame(() => this.animate());
+  animate() {
+    this.app.ticker.add((delta) => {
+      Matter.Engine.update(this.engine, delta);
+
+      this.updateCirclesPosition();
+    });
   }
 
   init() {
@@ -123,8 +164,10 @@ class CircleGenerator {
       this.engine.world,
       [...this.circles.map((circle) => circle.body), ...this.bounds],
     );
-    Matter.Render.run(this.render);
-    Matter.Runner.run(this.runner, this.engine);
+
+    Matter.Runner.run(this.runner, this.engine, this.render);
+
+    this.addMouse();
 
     this.animate();
   }

@@ -31,6 +31,8 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/prop-types': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'no-plusplus': 'off',
+    'no-param-reassign': 0,
   },
   settings: {
     'import/resolver': {

@@ -11,7 +11,7 @@ function About() {
         <div className="container">
           <AboutMainSection />
         </div>
-        <Marquee text="Visual design for digital experiences" />
+        <Marquee text="Front-end dev for digital experiences" />
         <div className="container">
           <WhatIDoSection className="about-page__tabs" />
           <ContactSection className="about-page__contact" />
