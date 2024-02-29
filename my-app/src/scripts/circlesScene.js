@@ -2,7 +2,9 @@ import * as PIXI from 'pixi.js';
 import * as Matter from 'matter-js';
 
 class CircleGenerator {
-  constructor({ el = null, isMobile = false, quantity = 12 }) {
+  constructor({
+    el = null, isMobile = false, quantity = 12, images = [],
+  }) {
     this.isMobile = isMobile;
 
     this.app = new PIXI.Application({
@@ -17,6 +19,9 @@ class CircleGenerator {
     this.quantity = quantity;
     this.circles = [];
     this.bounds = [];
+
+    this.images = images;
+    this.textures = [];
 
     this.engine = Matter.Engine.create();
     this.runner = Matter.Runner.create();
@@ -34,7 +39,14 @@ class CircleGenerator {
     this.engine.world.gravity.scale = 0.0005;
   }
 
-  createCircleTexture(diameter) {
+  loadImages(callback = () => {}) {
+    PIXI.Assets.loader.load(this.images).then((res) => {
+      this.textures = this.images.map((path) => res[path]);
+      callback();
+    });
+  }
+
+  createCircleGraphicsTexture(diameter) {
     const circleGraphics = new PIXI.Graphics();
     const randomFillColor = Math.random() * 0xFFFFFF;
     circleGraphics.beginFill(randomFillColor);
@@ -44,35 +56,45 @@ class CircleGenerator {
     return this.app.renderer.generateTexture(circleGraphics);
   }
 
-  generateCircles() {
+  generateCircles(textures = []) {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < this.quantity; i++) {
       // matter
+      const diameter = (window.innerWidth / (this.isMobile ? 7 : 15))
+          + Math.random()
+          * (window.innerWidth / (this.isMobile ? 14 : 30));
+
       const circle = Matter.Bodies.circle(
         Math.random() * window.innerWidth,
         Math.random() * 10,
-        (window.innerWidth / (this.isMobile ? 7 : 15))
-          + Math.random()
-          * (window.innerWidth / (this.isMobile ? 14 : 30)),
+        diameter,
         { restitution: 0.6, slop: 0 },
       );
       Matter.Composite.add(this.engine.world, circle);
 
       // pixi
-      const circleSprite = new PIXI.Sprite(this.createCircleTexture(circle.circleRadius));
+      const texture = (textures[i] !== undefined
+        ? textures[i]
+        : this.createCircleGraphicsTexture(circle.circleRadius))
+          || this.createCircleGraphicsTexture(circle.circleRadius);
+
+      const circleSprite = new PIXI.Sprite(texture);
+
       circleSprite.x = circle.position.x;
       circleSprite.y = circle.position.y;
+      circleSprite.width = diameter * 2;
+      circleSprite.height = diameter * 2;
       circleSprite.anchor.set(0.5);
 
       this.app.stage.addChild(circleSprite);
 
       this.circles.push({ graphics: circleSprite, body: circle });
     }
-
-    console.log(this.circles);
   }
 
   addMouse() {
+    if (this.isMobile) return;
+
     const mouse = Matter.Mouse.create(document.body);
     this.mouseConstraint = Matter.MouseConstraint.create(this.engine, {
       mouse,
@@ -138,7 +160,7 @@ class CircleGenerator {
     this.circles.forEach((circle) => {
       circle.graphics.x = circle.body.position.x;
       circle.graphics.y = circle.body.position.y;
-      circle.rotation = circle.body.angle;
+      circle.graphics.rotation = circle.body.angle;
     });
   }
 
@@ -150,6 +172,24 @@ class CircleGenerator {
     });
   }
 
+  circlesRefresh(withImages = false) {
+    this.circles.forEach((circle) => {
+      this.app.stage.removeChild(circle.graphics);
+    });
+    Matter.Composite.clear(this.engine.world);
+    this.circles = [];
+
+    this.generateCircles(withImages ? this.textures : []);
+    this.createBoundaries();
+
+    Matter.Composite.add(
+      this.engine.world,
+      [...this.circles.map((circle) => circle.body), ...this.bounds],
+    );
+
+    this.addMouse();
+  }
+
   init() {
     if (!this.el) return;
 
@@ -157,7 +197,7 @@ class CircleGenerator {
 
     window.addEventListener('resize', this.onResize.bind(this));
 
-    this.generateCircles();
+    // this.generateCircles();
     this.createBoundaries();
 
     Matter.Composite.add(

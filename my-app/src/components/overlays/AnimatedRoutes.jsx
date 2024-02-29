@@ -9,18 +9,26 @@ import ErrorPage from 'pages/error-page';
 
 import { AnimatePresence } from 'framer-motion';
 
-const { REACT_APP_BASE_PATH } = process.env;
+import routesNames from 'configs/routesNames';
+
+const {
+  home,
+  projects,
+  about,
+  contact,
+} = routesNames;
+
 function AnimatedRoutes() {
   const location = useLocation();
 
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
-        <Route path={`${REACT_APP_BASE_PATH}`} element={<Home />} errorElement={<ErrorPage />} />
-        <Route path={`${REACT_APP_BASE_PATH}projects`} element={<Projects />} errorElement={<ErrorPage />} />
-        <Route path={`${REACT_APP_BASE_PATH}projects/:projectId`} element={<Project />} errorElement={<ErrorPage />} />
-        <Route path={`${REACT_APP_BASE_PATH}about`} element={<About />} errorElement={<ErrorPage />} />
-        <Route path={`${REACT_APP_BASE_PATH}contact`} element={<Contact />} errorElement={<ErrorPage />} />
+        <Route path={home} element={<Home />} errorElement={<ErrorPage />} />
+        <Route path={projects} element={<Projects />} errorElement={<ErrorPage />} />
+        <Route path={`${projects}/:projectId`} element={<Project />} errorElement={<ErrorPage />} />
+        <Route path={about} element={<About />} errorElement={<ErrorPage />} />
+        <Route path={contact} element={<Contact />} errorElement={<ErrorPage />} />
       </Routes>
     </AnimatePresence>
   );

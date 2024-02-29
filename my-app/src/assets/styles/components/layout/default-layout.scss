@@ -40,25 +40,25 @@
 
   }
 
-  &__loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9993;
-    //background: #fff;
-
-    -webkit-mask-image: url('../../../../../public/static/images/cow1.svg');
-    mask-image: url('../../../../../public/static/images/cow1.svg');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: repeat;
-    mask-repeat: repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-
-    backdrop-filter: invert(100%);
-    pointer-events: none;
-  }
+  //&__loader {
+  //  position: fixed;
+  //  top: 0;
+  //  left: 0;
+  //  width: 100vw;
+  //  height: 100vh;
+  //  z-index: 9993;
+  //  //background: #fff;
+  //
+  //  -webkit-mask-image: url('../../../../../public/static/images/cow1.svg');
+  //  mask-image: url('../../../../../public/static/images/cow1.svg');
+  //  -webkit-mask-size: 100% 100%;
+  //  mask-size: 100% 100%;
+  //  -webkit-mask-repeat: repeat;
+  //  mask-repeat: repeat;
+  //  -webkit-mask-position: center;
+  //  mask-position: center;
+  //
+  //  backdrop-filter: invert(100%);
+  //  pointer-events: none;
+  //}
 }
