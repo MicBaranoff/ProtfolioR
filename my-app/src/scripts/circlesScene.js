@@ -35,7 +35,7 @@ class CircleGenerator {
 
     this.mouseConstraint = null;
 
-    this.engine.world.gravity.y = 0.2;
+    this.engine.world.gravity.y = 0.25;
     this.engine.world.gravity.scale = 0.0005;
   }
 
@@ -66,7 +66,7 @@ class CircleGenerator {
 
       const circle = Matter.Bodies.circle(
         Math.random() * window.innerWidth,
-        Math.random() * 10,
+        Math.random() * 100,
         diameter,
         { restitution: 0.6, slop: 0 },
       );
@@ -75,8 +75,7 @@ class CircleGenerator {
       // pixi
       const texture = (textures[i] !== undefined
         ? textures[i]
-        : this.createCircleGraphicsTexture(circle.circleRadius))
-          || this.createCircleGraphicsTexture(circle.circleRadius);
+        : this.createCircleGraphicsTexture(circle.circleRadius));
 
       const circleSprite = new PIXI.Sprite(texture);
 
