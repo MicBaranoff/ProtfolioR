@@ -5,6 +5,8 @@
   right: 0;
   width: 100vw;
   height: 100vh;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   z-index: 0;
   opacity: 0;
   transition: opacity .3s ease;
@@ -12,5 +14,9 @@
   &--ready {
     opacity: 1;
     transition-delay: .5s;
+
+    @include is-mobile {
+      opacity: 0.7;
+    }
   }
 }

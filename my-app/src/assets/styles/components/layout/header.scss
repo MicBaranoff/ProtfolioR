@@ -62,6 +62,7 @@
     }
 
     &.active {
+      pointer-events: none;
       //background: $color-primary-900;
       //color: $color-primary-100;
     }

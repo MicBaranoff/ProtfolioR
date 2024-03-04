@@ -10,6 +10,10 @@ function ContactSection({ className }) {
     Splitting({ target: title.current });
   }, []);
 
+  const goToLink = (link) => {
+    window.open(link, '_blank');
+  };
+
   return (
     <div data-scroll data-scroll-section data-scroll-offset="30%" className={`contact-section ${className}`}>
       <div className="container contact-section__wrapper">
@@ -29,6 +33,7 @@ function ContactSection({ className }) {
           className="contact-section__button"
           text="senior.mishel@gmail.com"
           icon="arrow-next-top"
+          onClick={() => goToLink('mailto:senior.mishel@gmail.com')}
         />
       </div>
     </div>

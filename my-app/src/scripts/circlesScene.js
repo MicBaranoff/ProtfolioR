@@ -6,16 +6,16 @@ class CircleGenerator {
     el = null, isMobile = false, quantity = 12, images = [],
   }) {
     this.isMobile = isMobile;
+    this.el = el;
 
     this.app = new PIXI.Application({
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: this.el.offsetWidth,
+      height: this.el.offsetHeight,
       backgroundColor: 0x000000,
       resizeTo: window,
       antialias: true,
     });
 
-    this.el = el;
     this.quantity = quantity;
     this.circles = [];
     this.bounds = [];
@@ -28,8 +28,8 @@ class CircleGenerator {
     this.render = Matter.Render.create({
       engine: this.engine,
       options: {
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: this.el.offsetWidth,
+        height: this.el.offsetHeight,
       },
     });
 
