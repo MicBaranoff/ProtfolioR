@@ -64,9 +64,9 @@ class CircleGenerator {
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < this.quantity; i++) {
             // matter
-            const diameter = (window.innerWidth / (this.isMobile ? 7 : 15))
+            const diameter = (window.innerWidth / (this.isMobile ? 10 : 15))
                 + Math.random()
-                * (window.innerWidth / (this.isMobile ? 14 : 30));
+                * (window.innerWidth / (this.isMobile ? 5 : 30));
 
             const circle = Matter.Bodies.circle(
                 Math.random() * window.innerWidth,
