@@ -1,229 +1,254 @@
 import * as PIXI from 'pixi.js';
 import * as Matter from 'matter-js';
 
+// import debounce from 'lodash.debounce';
+
 class CircleGenerator {
-  constructor({
-    el = null, isMobile = false, quantity = 12, images = [],
-  }) {
-    this.isMobile = isMobile;
-    this.el = el;
+    constructor({
+                    el = null, isMobile = false, quantity = 12, images = [],
+                }) {
+        this.isMobile = isMobile;
+        this.el = el;
 
-    this.app = new PIXI.Application({
-      width: this.el.offsetWidth,
-      height: this.el.offsetHeight,
-      backgroundColor: 0x000000,
-      resizeTo: window,
-      antialias: true,
-    });
+        this.app = new PIXI.Application({
+            width: this.el.offsetWidth,
+            height: this.el.offsetHeight,
+            backgroundColor: 0x000000,
+            resizeTo: window,
+            antialias: true,
+        });
 
-    this.quantity = quantity;
-    this.circles = [];
-    this.bounds = [];
+        this.quantity = quantity;
+        this.withImages = false;
+        this.circles = [];
+        this.bounds = [];
 
-    this.images = images;
-    this.textures = [];
+        this.images = images;
+        this.textures = [];
 
-    this.engine = Matter.Engine.create();
-    this.runner = Matter.Runner.create();
-    this.render = Matter.Render.create({
-      engine: this.engine,
-      options: {
-        width: this.el.offsetWidth,
-        height: this.el.offsetHeight,
-      },
-    });
+        this.engine = Matter.Engine.create();
+        this.runner = Matter.Runner.create();
+        this.render = Matter.Render.create({
+            engine: this.engine,
+            options: {
+                width: this.el.offsetWidth,
+                height: this.el.offsetHeight,
+            },
+        });
 
-    this.mouseConstraint = null;
+        this.mouseConstraint = null;
 
-    this.engine.world.gravity.y = 0.25;
-    this.engine.world.gravity.scale = 0.0005;
-  }
-
-  loadImages(callback = () => {}) {
-    PIXI.Assets.loader.load(this.images).then((res) => {
-      this.textures = this.images.map((path) => res[path]);
-      callback();
-    });
-  }
-
-  createCircleGraphicsTexture(diameter) {
-    const circleGraphics = new PIXI.Graphics();
-    const randomFillColor = Math.random() * 0xFFFFFF;
-    circleGraphics.beginFill(randomFillColor);
-    circleGraphics.drawCircle(0, 0, diameter);
-    circleGraphics.endFill();
-
-    return this.app.renderer.generateTexture(circleGraphics);
-  }
-
-  generateCircles(textures = []) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < this.quantity; i++) {
-      // matter
-      const diameter = (window.innerWidth / (this.isMobile ? 7 : 15))
-          + Math.random()
-          * (window.innerWidth / (this.isMobile ? 14 : 30));
-
-      const circle = Matter.Bodies.circle(
-        Math.random() * window.innerWidth,
-        Math.random() * 100,
-        diameter,
-        { restitution: 0.6, slop: 0 },
-      );
-      Matter.Composite.add(this.engine.world, circle);
-
-      // pixi
-      const texture = (textures[i] !== undefined
-        ? textures[i]
-        : this.createCircleGraphicsTexture(circle.circleRadius));
-
-      const circleSprite = new PIXI.Sprite(texture);
-
-      circleSprite.x = circle.position.x;
-      circleSprite.y = circle.position.y;
-      circleSprite.width = diameter * 2;
-      circleSprite.height = diameter * 2;
-      circleSprite.anchor.set(0.5);
-
-      this.app.stage.addChild(circleSprite);
-
-      this.circles.push({ graphics: circleSprite, body: circle });
+        this.engine.world.gravity.y = 0.25;
+        this.engine.world.gravity.scale = 0.0005;
     }
-  }
 
-  addMouse() {
-    if (this.isMobile) return;
+    loadImages(callback = () => {
+    }) {
+        PIXI.Assets.loader.load(this.images).then((res) => {
+            this.textures = this.images.map((path) => res[path]);
+            callback();
+        });
+    }
 
-    const mouse = Matter.Mouse.create(document.body);
-    this.mouseConstraint = Matter.MouseConstraint.create(this.engine, {
-      mouse,
-      constraint: {
-        stiffness: 0.0002,
-        render: {
-          visible: false,
-        },
-      },
-    });
+    createCircleGraphicsTexture(diameter) {
+        const circleGraphics = new PIXI.Graphics();
+        const randomFillColor = Math.random() * 0xFFFFFF;
+        circleGraphics.beginFill(randomFillColor);
+        circleGraphics.drawCircle(0, 0, diameter);
+        circleGraphics.endFill();
 
-    Matter.World.add(this.engine.world, this.mouseConstraint);
+        return this.app.renderer.generateTexture(circleGraphics);
+    }
 
-    this.render.mouse = mouse;
-  }
+    generateCircles(textures = []) {
+        // eslint-disable-next-line no-plusplus
+        for (let i = 0; i < this.quantity; i++) {
+            // matter
+            const diameter = (window.innerWidth / (this.isMobile ? 7 : 15))
+                + Math.random()
+                * (window.innerWidth / (this.isMobile ? 14 : 30));
 
-  onResize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+            const circle = Matter.Bodies.circle(
+                Math.random() * window.innerWidth,
+                Math.random() * 100,
+                diameter,
+                { restitution: 0.6, slop: 0 },
+            );
+            Matter.Composite.add(this.engine.world, circle);
 
-    this.app?.renderer?.resize(width, height);
-  }
+            // pixi
+            const texture = (textures[i] !== undefined
+                ? textures[i]
+                : this.createCircleGraphicsTexture(circle.circleRadius));
 
-  createBoundaries() {
-    // Scene walls
-    const ceiling = Matter.Bodies.rectangle(
-      this.app.renderer.width / 2,
-      -this.app.renderer.height + 1,
-      this.app.renderer.width,
-      1,
-      { isStatic: true },
-    );
+            const circleSprite = new PIXI.Sprite(texture);
 
-    const floor = Matter.Bodies.rectangle(
-      this.app.renderer.width / 2,
-      this.app.renderer.height,
-      this.app.renderer.width,
-      1,
-      { isStatic: true },
-    );
+            circleSprite.x = circle.position.x;
+            circleSprite.y = circle.position.y;
+            circleSprite.width = diameter * 2;
+            circleSprite.height = diameter * 2;
+            circleSprite.anchor.set(0.5);
 
-    const leftWall = Matter.Bodies.rectangle(
-      -1,
-      0,
-      1,
-      this.app.renderer.height * 2,
-      { isStatic: true },
-    );
+            this.app.stage.addChild(circleSprite);
 
-    const rightWall = Matter.Bodies.rectangle(
-      this.app.renderer.width - 1,
-      0,
-      1,
-      this.app.renderer.height * 2,
-      { isStatic: true },
-    );
+            this.circles.push({ graphics: circleSprite, body: circle });
+        }
+    }
 
-    this.bounds = [floor, ceiling, leftWall, rightWall];
-    Matter.Composite.add(this.engine.world, this.bounds);
-  }
+    addMouse() {
+        if (this.isMobile) return;
 
-  updateCirclesPosition() {
-    this.circles.forEach((circle) => {
-      circle.graphics.x = circle.body.position.x;
-      circle.graphics.y = circle.body.position.y;
-      circle.graphics.rotation = circle.body.angle;
-    });
-  }
+        const mouse = Matter.Mouse.create(document.body);
+        this.mouseConstraint = Matter.MouseConstraint.create(this.engine, {
+            mouse,
+            constraint: {
+                stiffness: 0.0002,
+                render: {
+                    visible: false,
+                },
+            },
+        });
 
-  animate() {
-    this.app.ticker.add((delta) => {
-      Matter.Engine.update(this.engine, delta);
+        Matter.World.add(this.engine.world, this.mouseConstraint);
 
-      this.updateCirclesPosition();
-    });
-  }
+        this.render.mouse = mouse;
+    }
 
-  circlesRefresh(withImages = false) {
-    this.circles.forEach((circle) => {
-      this.app.stage.removeChild(circle.graphics);
-    });
-    Matter.Composite.clear(this.engine.world);
-    this.circles = [];
+    onResize() {
+        this.render.bounds.max.x = window.clientWidth;
+        this.render.bounds.max.y = window.clientHeight;
+        this.render.options.width = window.clientWidth;
+        this.render.options.height = window.clientHeight;
+        this.render.canvas.width = window.clientWidth;
+        this.render.canvas.height = window.clientHeight;
+        Matter.Render.setPixelRatio(this.render, window.devicePixelRatio);
 
-    this.generateCircles(withImages ? this.textures : []);
-    this.createBoundaries();
+        this.bounds.forEach((object) => {
+            Matter.Composite.remove(this.engine.world, this.getCompositeObjectByName(object.label));
+        });
 
-    Matter.Composite.add(
-      this.engine.world,
-      [...this.circles.map((circle) => circle.body), ...this.bounds],
-    );
+        this.bounds = [];
 
-    this.addMouse();
-  }
+        this.createBoundaries();
 
-  init() {
-    if (!this.el) return;
+        Matter.Composite.add(
+            this.engine.world,
+            this.bounds,
+        );
+    }
 
-    this.el.appendChild(this.app.view);
+    getCompositeObjectByName(name) {
+        return Matter.Composite.allBodies(this.engine.world).filter((body) => body.label === name);
+    }
 
-    window.addEventListener('resize', this.onResize.bind(this));
+    createBoundaries() {
+        // Scene walls
+        const ceiling = Matter.Bodies.rectangle(
+            this.app.renderer.width / 2,
+            -this.app.renderer.height + 1,
+            this.app.renderer.width,
+            1,
+            { isStatic: true, label: 'ceiling' },
+        );
 
-    // this.generateCircles();
-    this.createBoundaries();
+        const floor = Matter.Bodies.rectangle(
+            this.app.renderer.width / 2,
+            this.app.renderer.height,
+            this.app.renderer.width,
+            1,
+            { isStatic: true, label: 'floor' },
+        );
 
-    Matter.Composite.add(
-      this.engine.world,
-      [...this.circles.map((circle) => circle.body), ...this.bounds],
-    );
+        const leftWall = Matter.Bodies.rectangle(
+            -1,
+            0,
+            1,
+            this.app.renderer.height * 2,
+            { isStatic: true, label: 'leftWall' },
+        );
 
-    Matter.Runner.run(this.runner, this.engine, this.render);
+        const rightWall = Matter.Bodies.rectangle(
+            this.app.renderer.width - 1,
+            0,
+            1,
+            this.app.renderer.height * 2,
+            { isStatic: true, label: 'rightWall' },
+        );
 
-    this.addMouse();
+        this.bounds = [floor, ceiling, leftWall, rightWall];
+    }
 
-    this.animate();
-  }
+    updateCirclesPosition() {
+        this.circles.forEach((circle) => {
+            circle.graphics.x = circle.body.position.x;
+            circle.graphics.y = circle.body.position.y;
+            circle.graphics.rotation = circle.body.angle;
+        });
+    }
 
-  destroy() {
-    window.removeEventListener('resize', this.onResize.bind(this));
+    animate() {
+        this.app.ticker.add((delta) => {
+            Matter.Engine.update(this.engine, delta);
 
-    this.circles.forEach((circle) => {
-      this.app.stage.removeChild(circle.graphics);
-    });
+            this.updateCirclesPosition();
+        });
+    }
 
-    this.app.destroy();
+    circlesRefresh(withImages = false) {
+        this.withImages = withImages;
 
-    Matter.Composite.clear(this.engine.world);
+        this.circles.forEach((circle) => {
+            this.app.stage.removeChild(circle.graphics);
+        });
+        Matter.Composite.clear(this.engine.world);
+        this.circles = [];
 
-    this.circles = [];
-  }
+        this.generateCircles(withImages ? this.textures : []);
+        // this.createBoundaries();
+
+        Matter.Composite.add(
+            this.engine.world,
+            [...this.circles.map((circle) => circle.body), ...this.bounds],
+        );
+
+        this.addMouse();
+    }
+
+    init() {
+        if (!this.el) return;
+
+        this.el.appendChild(this.app.view);
+
+        window.addEventListener('resize', this.onResize.bind(this));
+
+        // this.generateCircles();
+        this.createBoundaries();
+
+        Matter.Composite.add(
+            this.engine.world,
+            [...this.circles.map((circle) => circle.body), ...this.bounds],
+        );
+
+        Matter.Runner.run(this.runner, this.engine, this.render);
+
+        this.addMouse();
+
+        this.animate();
+    }
+
+    destroy() {
+        window.removeEventListener('resize', this.onResize.bind(this));
+
+        this.circles.forEach((circle) => {
+            this.app.stage.removeChild(circle.graphics);
+        });
+
+        this.app.destroy();
+
+        Matter.Composite.clear(this.engine.world);
+
+        this.circles = [];
+    }
 }
 
 export default CircleGenerator;
