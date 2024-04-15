@@ -1,16 +1,9 @@
-.project-card{
+.project-card {
 
 
   max-width: rem(592);
   position: relative;
-  //clip-path: polygon(
-  //                calc(var(--mask-progress) * 100%) 0,
-  //                calc((100 - var(--mask-progress)) * 100%) 0,
-  //                calc((100 - var(--mask-progress)) * 100%) 100%,
-  //                calc(var(--mask-progress) * 100%) 100%
-  //);
-  //clip-path: polygon(calc(var(--mask-progress) * 100%) 32%, 100% 0, 55% 63%, 0 100%);
-
+  transition: clip-path .1s linear;
   $parent: &;
 
   &:hover {
@@ -25,7 +18,7 @@
 
   &:nth-child(1) {
     @include is-mobile {
-      clip-path: unset!important;
+      clip-path: unset !important;
     }
   }
 

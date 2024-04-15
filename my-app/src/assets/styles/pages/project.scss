@@ -59,8 +59,8 @@
 
   &__image {
     display: block;
-    width: 100%;
     max-width: rem(780);
+    max-height: 65vh;
     margin-top: rem(50);
     position: relative;
 
@@ -74,7 +74,8 @@
       content: '';
       display: block;
       position: absolute;
-      left: 0; top: 0;
+      left: 0;
+      top: 0;
       right: 0;
       bottom: 0;
       width: 100%;

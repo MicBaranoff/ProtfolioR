@@ -1,0 +1,20 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999999;
+  background: $color-primary-900;
+  color: $color-primary-100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__icon {
+    width: rem(100);
+    height: rem(100);
+  }
+}

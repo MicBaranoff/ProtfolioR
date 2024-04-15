@@ -5,13 +5,13 @@
 }
 
 @mixin is-mobile {
-  @media screen and (max-width: 550px) {
+  .is-mobile & {
     @content;
   }
 }
 
 @mixin is-tablet {
-  @media screen and (max-width: 1024px) {
+  .is-tablet & {
     @content;
   }
 }

@@ -115,6 +115,8 @@ class CircleGenerator {
     }
 
     onResize() {
+        if (this.isMobile) return;
+
         this.render.bounds.max.x = window.clientWidth;
         this.render.bounds.max.y = window.clientHeight;
         this.render.options.width = window.clientWidth;
