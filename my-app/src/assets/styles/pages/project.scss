@@ -8,14 +8,14 @@
     padding-top: rem(120);
   }
 
-  &.is-inview {
-    #{$parent} {
-      &__back {
-        transform: none;
-        opacity: 1;
-      }
-    }
-  }
+  //&.is-inview {
+  //  #{$parent} {
+  //    &__back {
+  //      transform: none;
+  //      opacity: 1;
+  //    }
+  //  }
+  //}
 
   &__font {
     &--title {
@@ -132,9 +132,9 @@
     width: rem(30);
     color: $color-primary-100;
 
-    transition: transform .3s ease 1s, opacity .3s ease 1s;
-    transform: translateX(50px);
-    opacity: 0;
+    //transition: transform .3s ease 1s, opacity .3s ease 1s;
+    //transform: translateX(50px);
+    //opacity: 0;
 
     @include is-mobile {
       position: static;

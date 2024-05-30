@@ -4,13 +4,13 @@
 
   $parent: &;
 
-  &.is-inview {
-    #{$parent} {
-      &__link {
-        opacity: 1;
-      }
-    }
-  }
+  //&.is-inview {
+  //  #{$parent} {
+  //    &__link {
+  //      opacity: 1;
+  //    }
+  //  }
+  //}
 
   @include is-mobile {
     padding-top: rem(120);
@@ -49,7 +49,7 @@
     font-size: rem(22);
     margin-top: rem(10);
     display: inline-block;
-    opacity: 0;
+    //opacity: 0;
     transition: all .3s ease .6s;
 
     @include is-mobile {

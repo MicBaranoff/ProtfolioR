@@ -6,24 +6,24 @@
 
   $parent: &;
 
-  &.is-inview {
-    &:after,  &:before{
-      width: 100%;
-    }
+  //&.is-inview {
+  //  &:after,  &:before{
+  //    width: 100%;
+  //  }
+  //
+  //  @include is-mobile {
+  //    #{$parent}__img {
+  //      opacity: 1;
+  //      scale: 1;
+  //    }
+  //  }
+  //}
 
-    @include is-mobile {
-      #{$parent}__img {
-        opacity: 1;
-        scale: 1;
-      }
-    }
-  }
-
-  &:after{
+  &:after {
     content: '';
     display: block;
     position: absolute;
-    width: 0;
+    width: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -31,11 +31,11 @@
     border-top: 1px solid $color-primary-100;
   }
 
-  &:before{
+  &:before {
     content: '';
     display: block;
     position: absolute;
-    width: 0;
+    width: 100%;
     bottom: 0;
     left: 0;
     right: 0;
@@ -89,10 +89,10 @@
     transform: translateY(-50%);
     right: rem(200);
     transform-origin: center center;
-    opacity: 0;
-    scale: 0.8;
+    //opacity: 0;
+    //scale: 0.8;
     transition: opacity .3s ease, scale .3s ease;
-    z-index:4;
+    z-index: 4;
     pointer-events: none;
 
     @include is-mobile {

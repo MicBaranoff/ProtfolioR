@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 import isMobile from 'ismobilejs';
 
 import routesNames from 'configs/routesNames';
-
 import CirclesScene from '../../scripts/circlesScene';
 
 const isMobileDevice = isMobile(window.navigator).any;

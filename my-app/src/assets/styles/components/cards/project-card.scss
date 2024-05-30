@@ -1,9 +1,6 @@
 .project-card {
-
-
   max-width: rem(592);
   position: relative;
-  transition: clip-path .1s linear;
   $parent: &;
 
   &:hover {

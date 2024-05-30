@@ -4,9 +4,7 @@ import AnimatedRoutes from 'components/overlays/AnimatedRoutes';
 import CircleScene from 'components/blocks/CircleScene';
 import Loader from 'components/blocks/Loader';
 
-import { useEffect, useState } from 'react';
-
-import { useLocomotiveScroll } from 'react-locomotive-scroll';
+import { useState } from 'react';
 
 import isMobile from 'ismobilejs';
 
@@ -15,19 +13,8 @@ const isTabletDevice = isMobile(window.navigator).tablet;
 
 function App() {
     const [loading, setLoading] = useState(true);
-    const { scroll } = useLocomotiveScroll();
 
-    const onLoad = () => {
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        if (!scroll) return;
-
-        new ResizeObserver(() => {
-            scroll?.update();
-        }).observe(document.querySelector('[data-scroll-container]'));
-    }, [scroll]);
+    const onLoad = () => setLoading(false);
 
     return (
       <div className={`app ${isMobileDevice ? 'is-mobile' : ''} ${isTabletDevice ? 'is-tablet' : ''}`}>

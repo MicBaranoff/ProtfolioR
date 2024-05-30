@@ -4,11 +4,11 @@
 
   $parent: &;
 
-  &.is-inview {
-    #{$parent}__bg {
-      scale: 1;
-    }
-  }
+  //&.is-inview {
+  //  #{$parent}__bg {
+  //    scale: 1;
+  //  }
+  //}
 
   &:hover {
     #{$parent} {
@@ -60,13 +60,13 @@
     //background: transparent;
     z-index: 2;
     border-radius: 50%;
-    position:  absolute;
+    position: absolute;
     transition: width .3s ease, height .3s ease, transform .1s ease, scale .1s ease .3s;
     left: rem(-17);
     top: rem(18);
     backdrop-filter: invert(100%);
     pointer-events: none;
-    scale: 0;
+    //scale: 0;
 
     @include is-mobile {
       top: rem(10);

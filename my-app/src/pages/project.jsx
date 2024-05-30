@@ -32,8 +32,6 @@ function Project() {
     return (
       <DefaultLayer>
         <div
-          data-scroll
-          data-scroll-section
           className="project-page"
         >
           <div className="container">

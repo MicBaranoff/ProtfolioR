@@ -4,27 +4,16 @@
 
 .splitting .char {
   display: inline-block;
-  animation: slide-in .55s $transition-bounce both;
-  animation-delay: calc(.42s + (60ms * var(--char-index)));
-  animation-play-state: paused;
+  //animation: slide-in .55s $transition-bounce both;
+  //animation-delay: calc(.42s + (60ms * var(--char-index)));
+  //animation-play-state: paused;
 }
 
 .splitting .word {
   display: inline-block;
-  animation: slide-in .65s ease-in-out both;
-  animation-delay: calc(.3s + (120ms * var(--word-index)));
-  animation-play-state: paused;
-}
-
-// watching locomotive in-view block status
-@include is-in-view{
-  .splitting .char {
-    animation-play-state: running;
-  }
-
-  .splitting .word {
-    animation-play-state: running;
-  }
+  //animation: slide-in .65s ease-in-out both;
+  //animation-delay: calc(.3s + (120ms * var(--word-index)));
+  //animation-play-state: paused;
 }
 
 @keyframes slide-in {
