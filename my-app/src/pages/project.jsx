@@ -60,11 +60,6 @@ function Project() {
               {
                             projectData?.images.map((img) => (
                               <img
-                                data-scroll=""
-                                data-scroll-speed="2"
-                                data-scroll-position="center"
-                                data-scroll-delay="0.05"
-                                data-scroll-offset="-10%"
                                 key={`img${Math.random()}`}
                                 className="project-page__image"
                                 src={img}

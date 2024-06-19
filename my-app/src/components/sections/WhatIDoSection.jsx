@@ -16,8 +16,8 @@ function WhatIDoSection({ className = '' }) {
         duration: 4,
     });
     const animationTextStag = new TextStagGsapTL('.whatido-section__head-text', {
-        stagger: 0.15,
-        duration: 2,
+        stagger: 0.3,
+        duration: 4,
     });
 
     useEffect(() => {

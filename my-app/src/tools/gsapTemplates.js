@@ -23,9 +23,14 @@ export function cliPathGsap(
         duration: 2,
     },
 ) {
-    gsap.to(selector, {
-        clipPath: 'polygon(0 0, 125% 0%, 100% 100%, 0% 100%)',
+    const tl = gsap.timeline();
+    tl.to(selector, {
         ...options,
+        clipPath: 'polygon(0 0, 125% 0%, 100% 100%, 0% 100%)',
+
+    }).to(selector, {
+        duration: 0,
+        clipPath: 'none',
     });
 }
 

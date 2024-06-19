@@ -8,15 +8,6 @@
     padding-top: rem(120);
   }
 
-  //&.is-inview {
-  //  #{$parent} {
-  //    &__back {
-  //      transform: none;
-  //      opacity: 1;
-  //    }
-  //  }
-  //}
-
   &__font {
     &--title {
       font-size: rem(107);
@@ -26,7 +17,7 @@
 
       @include is-mobile {
         font-size: rem(48);
-        letter-spacing: rem(-2);
+        letter-spacing: rem(-0.3);
       }
     }
 
@@ -69,6 +60,12 @@
       width: 100%;
       max-width: 100%;
       margin-top: rem(50);
+    }
+
+    @include is-mobile {
+      width: 100%;
+      max-width: 100%;
+      margin-top: rem(20);
     }
 
     &:before {

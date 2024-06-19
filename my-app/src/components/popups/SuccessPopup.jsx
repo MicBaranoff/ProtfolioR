@@ -2,22 +2,20 @@ import { useEffect, useRef } from 'react';
 
 import Splitting from 'splitting';
 import { motion } from 'framer-motion';
-
-import { useNavigate } from 'react-router-dom';
+import { textStagGsap } from 'tools/gsapTemplates';
 
 import Button from 'components/ui/Button';
 
-const { REACT_APP_BASE_PATH } = process.env;
-
-function SuccessPopup() {
+function SuccessPopup({ onHide }) {
     const title = useRef(null);
     const desc = useRef(null);
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         Splitting({ target: title.current });
-        Splitting({ target: desc.current, by: 'lines' });
+        Splitting({ target: desc.current });
+
+        textStagGsap('.success-popup__title');
+        textStagGsap('.success-popup__text');
     }, []);
 
     return (
@@ -32,7 +30,12 @@ function SuccessPopup() {
                     duration: 0.3,
                 },
             }}
-        exit={{ opacity: 0 }}
+        exit={{
+                opacity: 0,
+                transition: {
+                    duration: 0.3,
+                },
+            }}
         viewport={{ once: true }}
       >
         <div className="container">
@@ -59,9 +62,9 @@ function SuccessPopup() {
             <Button
               className="success-popup__button"
               type="submit"
-              text="HOME PAGE"
+              text="UNDERSTAND"
               icon="arrow-next"
-              onClick={() => navigate(`${REACT_APP_BASE_PATH}`)}
+              onClick={() => onHide()}
             />
           </div>
         </div>

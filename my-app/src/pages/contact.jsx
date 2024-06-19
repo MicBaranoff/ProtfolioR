@@ -15,6 +15,10 @@ function Contact() {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
+    const hideSuccessPopup = () => {
+        setFormSubmitted(false);
+    };
+
     useEffect(() => {
         Splitting({ target: title1.current });
         Splitting({ target: title2.current });
@@ -86,7 +90,7 @@ function Contact() {
             </div>
           </div>
 
-          {formSubmitted && <SuccessPopup />}
+          {formSubmitted && <SuccessPopup onHide={hideSuccessPopup} />}
         </div>
       </DefaultLayer>
     );

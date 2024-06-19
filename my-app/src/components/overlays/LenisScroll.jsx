@@ -18,8 +18,25 @@ export const useLenis = () => useContext(lenisContext);
 function LenisScroll({ children }) {
     const location = useLocation();
 
+    const refreshScroll = (kill = true) => {
+        lenis.scrollTo(0, {
+            immediate: true,
+            force: true,
+        });
+
+        ScrollTrigger.refresh();
+
+        if (kill) ScrollTrigger.killAll();
+    };
+
     useEffect(() => {
         lenis.on('scroll', ScrollTrigger.update);
+
+        window.addEventListener('resize', () => {
+            ScrollTrigger.update();
+
+            refreshScroll(false);
+        });
 
         gsap.ticker.add((time) => {
             lenis.raf(time * 1000);
@@ -28,14 +45,8 @@ function LenisScroll({ children }) {
         gsap.ticker.lagSmoothing(0);
     }, [lenis]);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-
-        ScrollTrigger.refresh();
-
-        return () => {
-            ScrollTrigger.killAll();
-        };
+    useEffect(() => () => {
+        refreshScroll();
     }, [location.pathname]);
 
     return (
