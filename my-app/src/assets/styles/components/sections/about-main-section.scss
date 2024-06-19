@@ -11,10 +11,11 @@
 
   &__font {
     &--title {
-      font-size: rem(55);
+      font-size: rem(52);
       font-weight: 600;
-      line-height: 90%;
-      letter-spacing: rem(-7, 80);
+      line-height: 112%;
+      letter-spacing: rem(-0.7);
+
 
       @include is-mobile {
         font-size: rem(26);
@@ -29,7 +30,8 @@
       cursor: default;
       transition: color 3s 1s, text-shadow 3s 1s;
       animation-delay: 0s;
-      &:hover{
+
+      &:hover {
         transition: color 0s, text-shadow 0s;
         color: $color-primary-900;
         text-shadow: -1px 0 $color-primary-100, 0 1px $color-primary-100, 1px 0 $color-primary-100, 0 -1px $color-primary-100;

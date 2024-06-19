@@ -4,12 +4,12 @@
     &--title {
       font-size: rem(197);
       font-weight: 800;
-      line-height: 90%;
-      letter-spacing: rem(-10);
+      line-height: 111%;
+      letter-spacing: rem(-0.7);
 
       @include is-mobile {
         font-size: rem(48);
-        letter-spacing: rem(-2);
+        letter-spacing: 0;
       }
     }
 
@@ -58,6 +58,10 @@
   &__desc {
     margin-top: rem(56);
     max-width: rem(451);
+  }
+
+  &__desc-text {
+    @include clip-path-initial;
   }
 
   &__grid {

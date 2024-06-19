@@ -4,31 +4,56 @@ import { getRandomInt } from 'tools/helpers';
 
 import Splitting from 'splitting';
 
-function Achieve({ className = '', text, image }) {
-  const [RandomInt, setRandomInt] = useState(null);
+import { TextStagGsapTL } from 'tools/gsapTemplates';
 
-  const title = useRef(null);
+import throttle from 'lodash.throttle';
 
-  useEffect(() => {
-    setRandomInt(getRandomInt(-30, 30));
+function Achieve({
+                     className = '', text, image, onHover,
+                 }) {
+    const [randomInt] = useState(getRandomInt(-30, 30));
+    const [selector] = useState(`[data-id="achieve-${randomInt}"]`);
 
-    Splitting({ target: title.current });
-  }, []);
+    const title = useRef(null);
 
-  return (
-    <div data-scroll data-scroll-offset="30%" className={`achieve ${className}`}>
-      <div className="container achieve__wrapper">
-        <div className="achieve__title">
-          <span ref={title} className="achieve__font achieve__font--title">
-            {text}
-          </span>
+    const onHoverHandler = (img) => throttle(() => onHover(img), 100);
+
+    useEffect(() => {
+        Splitting({ target: title.current });
+
+        // const animationClipBlock = new CliPathGsapTL(selector, {
+        //     duration: 10,
+        // });
+
+        const animationTextStag = new TextStagGsapTL(selector, {
+            stagger: 0.15,
+            duration: 1,
+        });
+
+        // animationClipBlock.init();
+        animationTextStag.init();
+
+        return () => {
+            // animationClipBlock.kill();
+            animationTextStag.kill();
+        };
+    }, [selector]);
+
+    return (
+      <div
+        onMouseMove={() => onHoverHandler(image)}
+        data-id={`achieve-${randomInt}`}
+        className={`achieve ${className}`}
+      >
+        <div className="container achieve__wrapper">
+          <div data-id={`achieve-text-${randomInt}`} className="achieve__title">
+            <span ref={title} className="achieve__font achieve__font--title">
+              {text}
+            </span>
+          </div>
         </div>
       </div>
-      <div className="achieve__img" style={{ rotate: `${RandomInt}deg` }}>
-        <img src={image} alt="img" />
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Achieve;

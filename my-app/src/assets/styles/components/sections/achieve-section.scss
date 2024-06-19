@@ -8,10 +8,37 @@
       &__bg {
         scale: 1;
       }
+
+      &__img {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__img {
+    opacity: 0;
+    position: relative;
+    transition: transform .2s ease-out, opacity .3s ease;
+    width: rem(150);
+    height: rem(150);
+    z-index: 4;
+
+    &-pic {
+      max-width: none;
+      max-height: none;
+      position: absolute;
+      width: rem(250);
+      height: rem(250);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
   &__bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     width: rem(150);
     height: rem(150);
@@ -20,11 +47,15 @@
     top: 0;
     bottom: 0;
     z-index: 3;
-    background:transparent;
+    background: transparent;
     scale: 0;
     transition: scale .3s ease;
     backdrop-filter: invert(100%);
     pointer-events: none;
+
+    &-img {
+
+    }
 
     @include is-mobile {
       display: none;

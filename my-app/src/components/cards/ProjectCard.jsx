@@ -1,9 +1,18 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { generateRandomGradient } from 'tools/helpers';
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { CliPathGsapTL } from 'tools/gsapTemplates';
+
 import exampleImage from 'assets/images/projects/example.png';
+
+// import { CliPathGsapTL } from 'tools/gsapTemplates';
+import { gsap } from 'gsap';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function ProjectCard({
                          id = null,
@@ -14,32 +23,22 @@ function ProjectCard({
                          className,
                      }) {
     const [randomBackground] = useState(generateRandomGradient());
-    // const [scrollProgress, setScrollProgress] = useState(null);
 
-    // const MAX_TRANSFORM_VALUE = 100;
+    const uniqueId = `project-card-${id}-${Math.random()}`;
+    const selector = `[data-id="${uniqueId}`;
+    const animation = new CliPathGsapTL(selector);
 
-    // useEffect(() => {
-    //     if (!scroll) return;
-    //
-    //     scroll?.on('scroll', (args) => {
-    //         if (!args) return;
-    //
-    //         const currentElement = args?.currentElements?.[id];
-    //         const value = Math.ceil((currentElement?.progress || 0) * 100 * 1.5);
-    //         const { direction } = args;
-    //
-    //         if (value <= MAX_TRANSFORM_VALUE) setScrollProgress(value);
-    //
-    //         if (!currentElement && direction === 'up') setScrollProgress(MAX_TRANSFORM_VALUE);
-    //     }, { passive: false });
-    // }, [scroll]);
+    useEffect(() => {
+        animation.init();
+
+        return () => {
+            animation.kill();
+        };
+    }, []);
 
     return (
       <div
-            // style={{
-            //         clipPath: `circle(${0 + scrollProgress}% at 50% 50%)`,
-            //     }}
-        data-id={id}
+        data-id={uniqueId}
         className={`project-card ${className}`}
       >
         <NavLink to={link} className="project-card__link" />

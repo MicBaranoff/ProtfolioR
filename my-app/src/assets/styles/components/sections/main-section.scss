@@ -5,12 +5,12 @@
     &--title {
       font-size: rem(197);
       font-weight: 800;
-      line-height: 90%;
-      letter-spacing: rem(-10);
+      line-height: 111%;
+      letter-spacing: rem(-0.7);
 
       @include is-mobile {
         font-size: rem(48);
-        letter-spacing: rem(-2);
+        letter-spacing: 0;
       }
     }
 
@@ -19,7 +19,7 @@
       margin-bottom: rem(5);
       font-style: normal;
       font-weight: 600;
-      line-height: 130%;
+      line-height: 111%;
 
       @include is-mobile {
         font-size: rem(20);
@@ -52,6 +52,7 @@
 
   &__text {
     max-width: rem(461);
+    @include clip-path-initial;
 
     @include is-mobile {
       margin-bottom: rem(10);

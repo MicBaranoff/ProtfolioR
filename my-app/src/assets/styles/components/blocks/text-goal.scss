@@ -2,13 +2,9 @@
   width: rem(442);
   position: relative;
 
-  $parent: &;
+  @include clip-path-initial;
 
-  //&.is-inview {
-  //  #{$parent}__bg {
-  //    scale: 1;
-  //  }
-  //}
+  $parent: &;
 
   &:hover {
     #{$parent} {
@@ -79,7 +75,7 @@
 
     @include is-mobile {
       margin-bottom: rem(16);
-      padding-left: rem(8);
+      //padding-left: rem(8);
     }
   }
 }

@@ -3,8 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import Splitting from 'splitting';
 
-import Icon from 'components/ui/Icon';
+import { CliPathGsapTL, TextStagGsapTL } from 'tools/gsapTemplates';
 
+import Icon from 'components/ui/Icon';
 import ProjectCard from 'components/cards/ProjectCard';
 
 import projects from 'configs/projects';
@@ -15,9 +16,25 @@ function SomeProjectsSection({ className, innerRef }) {
     const title = useRef(null);
     const desc = useRef(null);
 
+    const animationClipText = new CliPathGsapTL('.some-projects-section__text', {
+        duration: 4,
+    });
+    const animationTextStag = new TextStagGsapTL('.some-projects-section__title', {
+        stagger: 0.15,
+        duration: 2,
+    });
+
     useEffect(() => {
         Splitting({ target: title.current });
         Splitting({ target: desc.current, by: 'lines' });
+
+        animationClipText.init();
+        animationTextStag.init();
+
+        return () => {
+            animationClipText.kill();
+            animationTextStag.kill();
+        };
     }, []);
 
     return (
@@ -30,13 +47,13 @@ function SomeProjectsSection({ className, innerRef }) {
             <div className="some-projects-section__head-text">
               <h3
                 ref={title}
-                className="some-projects-section__font some-projects-section__font--title"
+                className="some-projects-section__font some-projects-section__font--title some-projects-section__title"
               >
                 Projects
               </h3>
               <p
                 ref={desc}
-                className="some-projects-section__font some-projects-section__font--text"
+                className="some-projects-section__font some-projects-section__font--text some-projects-section__text"
               >
                 As a seasoned creator of contemporary,
                 user-friendly web designs and digital solutions,

@@ -1,28 +1,47 @@
-import { useEffect, useRef } from 'react';
-
-import ReactLenis from 'lenis/react';
+import Lenis from 'lenis';
+import { useEffect, createContext, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const lenis = new Lenis({
+    duration: 3,
+});
+
+const lenisContext = createContext(lenis);
+
+export const useLenis = () => useContext(lenisContext);
 
 function LenisScroll({ children }) {
-    const lenisRef = useRef();
+    const location = useLocation();
 
     useEffect(() => {
-        function update(time) {
-            lenisRef.current?.lenis?.raf(time * 1000);
-        }
+        lenis.on('scroll', ScrollTrigger.update);
 
-        gsap.ticker.add(update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+    }, [lenis]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+        ScrollTrigger.refresh();
 
         return () => {
-            gsap.ticker.remove(update);
+            ScrollTrigger.killAll();
         };
-    });
+    }, [location.pathname]);
 
     return (
-      <ReactLenis ref={lenisRef} autoRaf={false}>
+      <div>
         {children}
-      </ReactLenis>
+      </div>
     );
 }
 

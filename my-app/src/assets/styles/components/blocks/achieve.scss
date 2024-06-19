@@ -1,8 +1,9 @@
 .achieve {
-  padding: rem(20) 0;
   position: relative;
   margin-bottom: -1px;
   width: 100%;
+
+  //@include clip-path-initial;
 
   $parent: &;
 
@@ -61,8 +62,8 @@
     &--title {
       font-size: rem(65);
       font-weight: 800;
-      line-height: 90%;
-      letter-spacing: rem(-3);
+      line-height: 115%;
+      letter-spacing: rem(-0.7);
 
       @include is-mobile {
         font-size: rem(44);
@@ -83,7 +84,7 @@
   }
 
   &__img {
-    width: rem(250);
+    width: rem(100);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

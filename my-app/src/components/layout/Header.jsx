@@ -23,6 +23,7 @@ function Header() {
 
         if (!linkRect) return;
 
+        // eslint-disable-next-line max-len
         const offsetX = linkRect.left - highlight.current.parentElement.getBoundingClientRect().left;
         const { width } = linkRect;
 
@@ -35,7 +36,7 @@ function Header() {
     window.addEventListener('resize', debounce(setHighLightPosition, 300));
 
     useEffect(() => {
-        setTimeout(setHighLightPosition, 150);
+        setTimeout(setHighLightPosition, 250);
     }, [location]);
 
     return (

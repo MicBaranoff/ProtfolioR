@@ -22,7 +22,7 @@
       font-size: rem(107);
       font-weight: 800;
       line-height: 90%;
-      letter-spacing: rem(-5);
+      letter-spacing: rem(-0.3);
 
       @include is-mobile {
         font-size: rem(48);
@@ -55,6 +55,7 @@
 
   &__desc {
     max-width: rem(768);
+    @include clip-path-initial;
   }
 
   &__image {

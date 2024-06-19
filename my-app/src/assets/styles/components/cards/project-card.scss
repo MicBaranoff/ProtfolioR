@@ -3,6 +3,8 @@
   position: relative;
   $parent: &;
 
+  @include clip-path-initial;
+
   &:hover {
     #{$parent} {
       &__banner {

@@ -5,6 +5,7 @@ import Icon from 'components/ui/Icon';
 
 import { useEffect, useRef } from 'react';
 import Splitting from 'splitting';
+import { textStagGsap, cliPathGsap } from 'tools/gsapTemplates';
 
 import projects from 'configs/projects';
 
@@ -26,7 +27,9 @@ function Project() {
 
     useEffect(() => {
         Splitting({ target: title.current });
-        Splitting({ target: desc.current, by: 'lines' });
+
+        textStagGsap('.project-page__title');
+        cliPathGsap('.project-page__desc');
     }, []);
 
     return (

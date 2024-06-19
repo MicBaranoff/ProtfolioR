@@ -7,6 +7,7 @@ import SuccessPopup from 'components/popups/SuccessPopup';
 import { useEffect, useRef, useState } from 'react';
 
 import Splitting from 'splitting';
+import { textStagGsap, cliPathGsap } from 'tools/gsapTemplates';
 
 function Contact() {
     const title1 = useRef(null);
@@ -17,6 +18,11 @@ function Contact() {
     useEffect(() => {
         Splitting({ target: title1.current });
         Splitting({ target: title2.current });
+        Splitting({ target: '.contact-page__link' });
+
+        textStagGsap('.contact-page__title');
+        textStagGsap('.contact-page__link');
+        cliPathGsap('.contact-page__form');
     }, []);
 
     const showSuccessPopup = () => {
@@ -32,19 +38,19 @@ function Contact() {
             <div
               className="contact-page__wrapper"
             >
-              <div className="contact-page__form">
+              <div className="contact-page__form-wrapper">
                 <h4
                   ref={title2}
-                  className="contact-page__font contact-page__font--subtitle"
+                  className="contact-page__font contact-page__font--subtitle contact-page__title"
                 >
                   SEND ME A MESSAGE:
                 </h4>
-                <ContactForm onSubmit={showSuccessPopup} />
+                <ContactForm className="contact-page__form" onSubmit={showSuccessPopup} />
               </div>
               <div className="contact-page__links">
                 <h4
                   ref={title1}
-                  className="contact-page__font contact-page__font--subtitle"
+                  className="contact-page__font contact-page__font--subtitle contact-page__title"
                 >
                   Social links:
                 </h4>

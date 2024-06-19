@@ -4,7 +4,7 @@ import AnimatedRoutes from 'components/overlays/AnimatedRoutes';
 import CircleScene from 'components/blocks/CircleScene';
 import Loader from 'components/blocks/Loader';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import isMobile from 'ismobilejs';
 
@@ -16,8 +16,21 @@ function App() {
 
     const onLoad = () => setLoading(false);
 
+    useEffect(() => {
+        switch (true) {
+            case isMobileDevice:
+                document.body.classList.add('is-mobile');
+                break;
+            case isTabletDevice:
+                document.body.classList.add('is-tablet');
+                break;
+            default:
+                document.body.classList.add('is-desktop');
+        }
+    });
+
     return (
-      <div className={`app ${isMobileDevice ? 'is-mobile' : ''} ${isTabletDevice ? 'is-tablet' : ''}`}>
+      <div>
         <CircleScene onLoad={onLoad} />
 
         {

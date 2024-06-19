@@ -8,7 +8,7 @@
 }
 
 @function rem($value, $delimeter: $base-font-size) {
-  @return #{math.div($value, $delimeter)}rem
+  @return #{math.div($value, $delimeter)}em
 }
 
 @function calc-between-width($width-start, $value-start, $width-end, $value-end) {

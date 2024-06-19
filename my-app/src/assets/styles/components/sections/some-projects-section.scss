@@ -12,6 +12,7 @@
         font-size: rem(24);
       }
     }
+
     &--text {
       font-size: rem(20);
       font-weight: 400;
@@ -72,6 +73,10 @@
     @include is-mobile {
       margin-bottom: rem(48);
     }
+  }
+
+  &__text {
+    @include clip-path-initial;
   }
 
   &__grid {

@@ -7,7 +7,7 @@
   $parent: &;
 
   &:hover {
-    span {
+    > span {
       transform: translateY(-100%);
     }
   }
