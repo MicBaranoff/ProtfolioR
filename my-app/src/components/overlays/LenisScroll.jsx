@@ -46,7 +46,9 @@ function LenisScroll({ children }) {
     }, [lenis]);
 
     useEffect(() => () => {
-        refreshScroll();
+        setTimeout(() => {
+            refreshScroll();
+        }, 0);
     }, [location.pathname]);
 
     return (
