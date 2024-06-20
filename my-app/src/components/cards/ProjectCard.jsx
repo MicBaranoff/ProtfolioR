@@ -29,7 +29,10 @@ function ProjectCard({
     const animation = new CliPathGsapTL(selector);
 
     useEffect(() => {
-        animation.init();
+        // TODO: refactor this
+        setTimeout(() => {
+            animation.init();
+        }, 100);
 
         return () => {
             animation.kill();
