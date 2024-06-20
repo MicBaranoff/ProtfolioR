@@ -19,10 +19,12 @@ function LenisScroll({ children }) {
     const location = useLocation();
 
     const refreshScroll = (kill = true) => {
-        lenis.scrollTo(0, {
-            immediate: true,
-            force: true,
-        });
+        if (kill) {
+            lenis.scrollTo(0, {
+                immediate: true,
+                force: true,
+            });
+        }
 
         ScrollTrigger.refresh();
 
